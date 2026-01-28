@@ -3,9 +3,9 @@ import 'package:json_annotation/json_annotation.dart';
 import 'adult_personal_history.dart';
 import 'job_history.dart';
 import 'obstetric_gynecological_history.dart';
-import 'pathological_family_history.dart';
-import 'physical_exam.dart';
-import 'systems_review.dart';
+import '../note_asset/pathological_family_history.dart';
+import '../note_asset/physical_exam.dart';
+import '../note_asset/systems_review.dart';
 
 part 'clinical_note.g.dart';
 

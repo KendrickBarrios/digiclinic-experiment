@@ -1,5 +1,5 @@
 import 'non_pathological_history.dart';
-import 'personal_pathological_record.dart';
+import '../note_asset/personal_pathological_record.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'adult_personal_history.g.dart';
