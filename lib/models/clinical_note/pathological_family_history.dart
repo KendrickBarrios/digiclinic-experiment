@@ -1,4 +1,4 @@
-import 'package:digiclinic_experiment/models/family_disease_record.dart';
+import 'family_disease_record.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'pathological_family_history.g.dart';

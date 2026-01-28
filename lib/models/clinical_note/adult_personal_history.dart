@@ -1,5 +1,5 @@
-import 'package:digiclinic_experiment/models/non_pathological_history.dart';
-import 'package:digiclinic_experiment/models/personal_pathological_record.dart';
+import 'non_pathological_history.dart';
+import 'personal_pathological_record.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'adult_personal_history.g.dart';

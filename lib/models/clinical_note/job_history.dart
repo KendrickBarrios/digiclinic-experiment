@@ -1,5 +1,5 @@
-import 'package:digiclinic_experiment/models/current_work_history.dart';
-import 'package:digiclinic_experiment/models/previous_job.dart';
+import 'current_work_history.dart';
+import 'previous_job.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'job_history.g.dart';
