@@ -16,7 +16,7 @@ class AuthViewModel extends ChangeNotifier {
   final TokenStorage _tokenStorage;
   final PreferencesStorage _preferencesStorage;
 
-  AuthStatus _status = AuthStatus.unknown;
+  AuthStatus _status = AuthStatus.unauthenticated;
 
   String? _errorMessage;
 
