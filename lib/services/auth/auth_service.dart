@@ -12,7 +12,7 @@ class AuthService {
   final ApiClient _apiClient;
   final TokenStorage _tokenStorage;
 
-  Future<void> login({
+  Future<String> login({
     required String email,
     required String password
   }) async {
@@ -33,16 +33,11 @@ class AuthService {
       final token = apiResponse.data?.token;
       if (token == null) throw Exception('Token no recibido');
 
-      await _tokenStorage.saveToken(token);
-      return;
+      return token;
     }
 
     if (response.statusCode == 401) throw Exception(json['message'] ?? 'Credenciales inválidas');
 
     throw Exception(json['message'] ?? 'Error al autenticar');
-  }
-
-  Future<void> logout() async {
-    await _tokenStorage.clearToken();
   }
 }
