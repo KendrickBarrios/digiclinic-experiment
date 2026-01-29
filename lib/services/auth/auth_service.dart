@@ -4,13 +4,11 @@ import 'package:digiclinic_experiment/services/core/api_client.dart';
 import 'package:digiclinic_experiment/models/api_response.dart';
 import 'package:digiclinic_experiment/models/auth/authentication_request.dart';
 import 'package:digiclinic_experiment/models/auth/authentication_response.dart';
-import 'package:digiclinic_experiment/services/core/token_storage.dart';
 
 class AuthService {
-  AuthService(this._apiClient, this._tokenStorage);
+  AuthService(this._apiClient);
 
   final ApiClient _apiClient;
-  final TokenStorage _tokenStorage;
 
   Future<String> login({
     required String email,
