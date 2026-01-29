@@ -10,6 +10,7 @@ dependencies:
   build_runner: ^2.10.5
   flutter:
     sdk: flutter
+  flutter_secure_storage: ^10.0.0
   http: ^1.6.0
   json_annotation: ^4.9.0
 
