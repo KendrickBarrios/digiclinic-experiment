@@ -23,7 +23,6 @@ class _LoginViewState extends State<LoginView> {
   final _emailFocus = FocusNode();
   final _passwordFocus = FocusNode();
 
-  bool _obscurePassword = true;
   bool _rememberMe = false;
 
   @override
@@ -45,7 +44,6 @@ class _LoginViewState extends State<LoginView> {
   @override
   Widget build(BuildContext context) {
     final auth = context.watch<AuthViewModel>();
-    final scheme = Theme.of(context).colorScheme;
 
     return Scaffold(
       body: Center(
