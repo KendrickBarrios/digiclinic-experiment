@@ -48,9 +48,9 @@ class _LoginViewState extends State<LoginView> {
     return Scaffold(
       body: Center(
         child: ConstrainedBox(
-          constraints: const BoxConstraints(minWidth: 800, maxHeight: 800),
+          constraints: const BoxConstraints(maxWidth: 800, maxHeight: 800),
           child: Card(
-            elevation: 8,
+            elevation: 12,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(16)
             ),
@@ -94,13 +94,28 @@ class _LoginViewState extends State<LoginView> {
               
                   const SizedBox(height: 24),
               
-                  ConstrainedBox(
-                    constraints: BoxConstraints(maxWidth: 500),
-                    child: CheckboxListTile(
-                      value: _rememberMe, 
-                      onChanged: (v) => setState(() => _rememberMe = v ?? false),
-                      title: const Text('Recordarme', style: AppTextStyles.inputLabel,),
-                    ),
+                  Align(
+                    alignment: Alignment.center,
+                    child: ConstrainedBox(
+                      constraints: BoxConstraints(maxWidth: 500),
+                      child: GestureDetector(
+                        onTap: () => setState(() => _rememberMe = !_rememberMe),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Checkbox(
+                              value: _rememberMe,
+                              onChanged: (v) => setState(() => _rememberMe = v ?? false),
+                            ),
+                            const SizedBox(width: 8),
+                            const Text(
+                              'Recordarme',
+                              style: AppTextStyles.inputLabel,
+                            ),
+                          ],
+                        ),
+                      ),
+                    )
                   ),
               
                   const SizedBox(height: 24),
