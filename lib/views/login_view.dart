@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import 'package:digiclinic_experiment/theme/app_colors.dart';
+import 'package:digiclinic_experiment/theme/app_text_styles.dart';
+import 'package:digiclinic_experiment/widgets/inputs/app_text_field.dart';
 import 'package:digiclinic_experiment/viewmodels/auth/auth_view_model.dart';
 import 'package:digiclinic_experiment/viewmodels/auth/auth_status.dart';
 
@@ -13,73 +16,124 @@ class LoginView extends StatefulWidget {
 }
 
 class _LoginViewState extends State<LoginView> {
+
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
+
+  final _emailFocus = FocusNode();
+  final _passwordFocus = FocusNode();
+
+  bool _obscurePassword = true;
   bool _rememberMe = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _emailFocus.addListener(() => setState(() {}));
+    _passwordFocus.addListener(() => setState(() {}));
+  }
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    _emailFocus.dispose();
+    _emailFocus.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     final auth = context.watch<AuthViewModel>();
+    final scheme = Theme.of(context).colorScheme;
 
     return Scaffold(
       body: Center(
         child: ConstrainedBox(
-          constraints: const BoxConstraints(maxWidth: 400),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Text(
-                'Iniciar sesión',
-                style: TextStyle(fontSize: 24),
+          constraints: const BoxConstraints(minWidth: 800, maxHeight: 800),
+          child: Card(
+            elevation: 8,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(16)
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(24),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  const Text(
+                    'Iniciar sesión',
+                    style: AppTextStyles.headlineRegular,
+                  ),
+              
+                  const SizedBox(height: 24),
+                  
+                  const Icon(
+                    Icons.account_circle,
+                    color: AppColors.midDarkBlue,
+                    size: 80.0,
+                  ),
+              
+                  const SizedBox(height: 24),
+              
+                  AppTextField(
+                    maxWidth: 500,
+                    label: 'Correo electrónico',
+                    controller: _emailController,
+                    icon: Icons.mail
+                  ),
+                  
+                  const SizedBox(height: 16),
+              
+                  AppTextField(
+                    maxWidth: 500,
+                    label: 'Contraseña', 
+                    controller: _passwordController,
+                    obscureText: true,
+                    showVisibilityToggle: true,
+                  ),
+              
+                  const SizedBox(height: 24),
+              
+                  ConstrainedBox(
+                    constraints: BoxConstraints(maxWidth: 500),
+                    child: CheckboxListTile(
+                      value: _rememberMe, 
+                      onChanged: (v) => setState(() => _rememberMe = v ?? false),
+                      title: const Text('Recordarme', style: AppTextStyles.inputLabel,),
+                    ),
+                  ),
+              
+                  const SizedBox(height: 24),
+              
+                  SizedBox(
+                    width: 350,
+                    height: 50,
+                    child: FilledButton(
+                      onPressed: auth.status == AuthStatus.loading
+                        ? null : () {
+                          auth.login(
+                            email: _emailController.text,
+                            password: _passwordController.text,
+                          rememberMe: _rememberMe
+                          );
+                        },
+                      child: const Text('Ingresar'),
+                    ),
+                  ),
+              
+                  if (auth.status == AuthStatus.error)
+                    Padding(
+                      padding: const EdgeInsets.only(top: 12),
+                      child: Text(
+                        auth.errorMessage ?? 'Error',
+                        style: const TextStyle(color: Colors.red)
+                      )
+                    )
+                ],
               ),
-
-              const SizedBox(height: 24),
-
-              TextField(
-                controller: _emailController,
-                decoration: const InputDecoration(labelText: 'Correo electrónico'),
-              ),
-
-              const SizedBox(height: 12),
-
-              TextField(
-                controller: _passwordController,
-                obscureText: true,
-                decoration: InputDecoration(labelText: 'Contraseña'),
-              ),
-
-              const SizedBox(height: 12),
-
-              CheckboxListTile(
-                value: _rememberMe, 
-                onChanged: (v) => setState(() => _rememberMe = v ?? false),
-                title: const Text('Recordarme'),
-              ),
-
-              const SizedBox(height: 12),
-
-              ElevatedButton(
-                onPressed: auth.status == AuthStatus.loading
-                  ? null
-                  : () {
-                    auth.login(
-                      email: _emailController.text,
-                      password: _passwordController.text,
-                      rememberMe: _rememberMe
-                    );
-                  },
-                child: const Text('Ingresar'),
-              ),
-
-              if (auth.status == AuthStatus.error)
-                Padding(
-                  padding: const EdgeInsets.only(top: 12),
-                  child: Text(
-                    auth.errorMessage ?? 'Error',
-                    style: const TextStyle(color: Colors.red)
-                  )
-                )
-            ],
+            ),
           )
         )
       )
