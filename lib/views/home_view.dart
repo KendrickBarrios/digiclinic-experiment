@@ -1,6 +1,5 @@
-import 'package:digiclinic_experiment/viewmodels/auth/auth_view_model.dart';
+import 'package:digiclinic_experiment/widgets/view_place_holder.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class HomeView extends StatelessWidget {
 
@@ -8,19 +7,6 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('DigiClinic'),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.logout),
-            onPressed: () {
-              context.read<AuthViewModel>().logout();
-            }
-          ),
-        ]
-      ),
-      body: Container(),
-    );
+    return ViewPlaceHolder(title: 'Inicio');
   }
 }
