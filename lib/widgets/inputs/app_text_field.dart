@@ -68,6 +68,7 @@ class _AppTextFieldState extends State<AppTextField> {
                 child: TextField(
                   controller: widget.controller,
                   obscureText: _obscure,
+                  style: AppTextStyles.inputText,
                   decoration: InputDecoration(
                     filled: true,
                     contentPadding: const EdgeInsets.symmetric(
