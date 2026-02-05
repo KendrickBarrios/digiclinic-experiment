@@ -1,12 +1,12 @@
 import 'package:digiclinic_experiment/widgets/view_place_holder.dart';
 import 'package:flutter/material.dart';
 
-class HomeView extends StatelessWidget {
+class AccountView extends StatelessWidget {
 
-  const HomeView({super.key});
+  const AccountView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return ViewPlaceHolder(title: 'Inicio');
+    return ViewPlaceHolder(title: 'Cuenta');
   }
 }

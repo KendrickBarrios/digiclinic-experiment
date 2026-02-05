@@ -1,12 +1,12 @@
 import 'package:digiclinic_experiment/widgets/view_place_holder.dart';
 import 'package:flutter/material.dart';
 
-class HomeView extends StatelessWidget {
+class AppointmentsView extends StatelessWidget {
 
-  const HomeView({super.key});
+  const AppointmentsView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return ViewPlaceHolder(title: 'Inicio');
+    return ViewPlaceHolder(title: 'Citas programadas');
   }
 }

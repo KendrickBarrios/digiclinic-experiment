@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import 'package:digiclinic_experiment/shell/main_shell.dart';
 import 'package:digiclinic_experiment/viewmodels/auth/auth_status.dart';
 import 'package:digiclinic_experiment/viewmodels/auth/auth_view_model.dart';
-import 'package:digiclinic_experiment/views/home_view.dart';
 import 'package:digiclinic_experiment/views/login_view.dart';
 
 class AuthGate extends StatelessWidget {
@@ -22,7 +22,7 @@ class AuthGate extends StatelessWidget {
         );
       
       case AuthStatus.authenticated:
-        return const HomeView();
+        return const MainShell();
       
       case AuthStatus.unauthenticated:
       case AuthStatus.error:

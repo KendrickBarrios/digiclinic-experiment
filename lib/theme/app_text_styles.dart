@@ -28,7 +28,7 @@ class AppTextStyles {
 
   static const TextStyle sidebarLabel = TextStyle(
     fontFamily: fontFamily,
-    fontSize: 28,
+    fontSize: 24,
     fontWeight: FontWeight.w700,
     color: Colors.white
   );
