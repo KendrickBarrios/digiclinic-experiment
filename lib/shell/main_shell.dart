@@ -31,7 +31,10 @@ class _MainShellState extends State<MainShell> {
   Widget _buildContent() {
     switch (_currentRoute) {
       case AppRoute.home:
-        return const HomeView();
+        return HomeView(
+          onSearchPressed: () => navigateTo(AppRoute.search),
+          onCreateRecordPressed: () => navigateTo(AppRoute.newRecord),
+        );
       case AppRoute.search:
         return const SearchView();
       case AppRoute.newRecord:
