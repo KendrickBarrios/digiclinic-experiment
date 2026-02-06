@@ -26,6 +26,13 @@ class AppTextStyles {
     color: Colors.white
   );
 
+  static const TextStyle iconButtonText = TextStyle(
+    fontFamily: fontFamily,
+    fontSize: 40,
+    fontWeight: FontWeight.w700,
+    color: Colors.white 
+  );
+
   static const TextStyle sidebarLabel = TextStyle(
     fontFamily: fontFamily,
     fontSize: 24,
