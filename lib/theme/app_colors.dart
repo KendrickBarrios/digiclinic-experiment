@@ -14,6 +14,6 @@ class AppColors {
   static const Color lighterGray = Color(0xFFF0F0F0);
   static const Color borderGray = Color(0xFFC6C6C7);
   static const Color buttonLightGray = Color(0xFFCCCCCC);
-  static const Color buttomMidGray = Color(0xFFAAAAAA);
-  static const Color buttomDarkGray = Color(0xFF666666);
+  static const Color buttonMidGray = Color(0xFFAAAAAA);
+  static const Color buttonDarkGray = Color(0xFF666666);
 }
