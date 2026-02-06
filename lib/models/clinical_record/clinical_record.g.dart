@@ -13,6 +13,9 @@ ClinicalRecord _$ClinicalRecordFromJson(Map<String, dynamic> json) =>
       recordCode: json['recordCode'] as String,
       fullName: json['fullName'] as String,
       lastVisitDate: DateTime.parse(json['lastVisitDate'] as String),
+      nextAppointments: (json['nextAppointments'] as List<dynamic>)
+          .map((e) => DateTime.parse(e as String))
+          .toList(),
       createdAt: json['createdAt'] == null
           ? null
           : DateTime.parse(json['createdAt'] as String),
@@ -25,4 +28,7 @@ Map<String, dynamic> _$ClinicalRecordToJson(ClinicalRecord instance) =>
       'recordCode': instance.recordCode,
       'fullName': instance.fullName,
       'lastVisitDate': instance.lastVisitDate.toIso8601String(),
+      'nextAppointments': instance.nextAppointments
+          .map((e) => e.toIso8601String())
+          .toList(),
     };

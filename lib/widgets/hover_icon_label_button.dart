@@ -1,0 +1,147 @@
+import 'package:digiclinic_experiment/theme/app_colors.dart';
+import 'package:digiclinic_experiment/theme/app_text_styles.dart';
+import 'package:flutter/material.dart';
+
+enum HoverButtonVariant {
+  primary,
+  secondary
+}
+
+class _HoverColors {
+
+  const _HoverColors({
+    required this.background,
+    required this.hoverBackground,
+    required this.pressedBackground,
+    required this.foreGround
+  });
+
+  final Color background;
+  final Color hoverBackground;
+  final Color pressedBackground;
+  final Color foreGround;
+}
+
+_HoverColors _colorsForVariant(
+  BuildContext context,
+  HoverButtonVariant variant
+) {
+  final scheme = Theme.of(context).colorScheme;
+
+  switch (variant) {
+    case HoverButtonVariant.primary:
+      return _HoverColors(
+        background: scheme.primary,
+        hoverBackground: scheme.onSurface,
+        pressedBackground: scheme.onSecondary,
+        foreGround: scheme.onPrimary
+      );
+    case HoverButtonVariant.secondary:
+      return _HoverColors(
+        background: AppColors.buttonLightGray,
+        hoverBackground: AppColors.buttonMidGray,
+        pressedBackground: AppColors.buttonDarkGray,
+        foreGround: scheme.onPrimary
+      );
+  }
+}
+
+class HoverIconlabelbutton extends StatefulWidget {
+
+  const HoverIconlabelbutton({
+    super.key,
+    required this.icon,
+    required this.iconSize,
+    required this.label,
+    required this.onTap,
+    this.variant = HoverButtonVariant.primary
+  });
+
+  final IconData icon;
+  final double iconSize;
+  final String label;
+  final VoidCallback onTap;
+  final HoverButtonVariant variant;
+
+  @override
+  State<HoverIconlabelbutton> createState() => _HoverIconLabelButtonState();
+}
+
+class _HoverIconLabelButtonState extends State<HoverIconlabelbutton> {
+
+  bool _hovered = false;
+  bool _pressed = false;
+  bool get _showText => _hovered || _pressed;
+
+  @override
+  Widget build(BuildContext context) {
+    return MouseRegion(
+      onEnter: (_) => setState(() => _hovered = true),
+      onExit: (_) => setState(() {
+        _hovered = false;
+        _pressed = false;
+      }),
+      cursor: SystemMouseCursors.click,
+      child: Listener(
+        onPointerDown: (_) => setState(() => _pressed = true),
+        onPointerUp: (_) => setState(() => _pressed = false),
+        onPointerCancel: (_) => setState(() => _pressed = false),
+        child: GestureDetector(
+          onTap: widget.onTap,
+          behavior: HitTestBehavior.opaque,
+          child: AnimatedContainer(
+            duration: const Duration(milliseconds: 200),
+            curve: Curves.easeOut,
+            decoration: BoxDecoration(
+              color: _backgroundColor(context),
+              borderRadius: BorderRadius.circular(20)
+            ),
+            child: Center(
+              child: AnimatedSwitcher(
+                duration: const Duration(milliseconds: 200),
+                switchInCurve: Curves.easeOut,
+                switchOutCurve: Curves.easeIn,
+                transitionBuilder: (child, animation) {
+                  return FadeTransition(
+                    opacity: animation,
+                    child: child
+                  );
+                },
+                child: _showText
+                  ? Text(
+                      widget.label,
+                      key: const ValueKey('text'),
+                      style: AppTextStyles.iconButtonText,
+                    )
+                  : Icon(
+                      widget.icon,
+                      key: const ValueKey('icon'),
+                      color: _foreGround(context),
+                      size: widget.iconSize,
+                    )
+              ),
+            ),
+          ),
+        )
+      )
+    );
+  }
+
+  Color _backgroundColor(BuildContext context) {
+    _HoverColors colors = _colorsForVariant(context, widget.variant);
+
+    if (_pressed) {
+      return colors.pressedBackground;
+    }
+
+    if (_hovered) {
+      return colors.hoverBackground;
+    }
+
+    return colors.background;
+  }
+
+  Color _foreGround(BuildContext context) {
+    return _colorsForVariant(context, widget.variant).foreGround;
+  }
+}

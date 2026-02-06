@@ -11,6 +11,7 @@ class ClinicalRecord {
     required this.recordCode,
     required this.fullName,
     required this.lastVisitDate,
+    required this.nextAppointments,
     this.createdAt,
   });
 
@@ -19,6 +20,7 @@ class ClinicalRecord {
   final String recordCode;
   final String fullName;
   final DateTime lastVisitDate;
+  final List<DateTime> nextAppointments;
   @JsonKey(includeToJson: false)
   final DateTime? createdAt;
 
