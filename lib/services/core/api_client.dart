@@ -14,7 +14,7 @@ class ApiClient {
     String path, {
     Map<String, String>? headers
   }) async {
-    final resolvedHeaders = await _defaultHeaders(headers);
+    final resolvedHeaders = await _defaultHeaders(path, headers);
 
     return http.get(
       Uri.parse('$baseUrl$path'),
@@ -27,7 +27,7 @@ class ApiClient {
     Object? body,
     Map<String, String>? headers
   }) async {
-    final resolvedHeaders = await _defaultHeaders(headers);
+    final resolvedHeaders = await _defaultHeaders(path, headers);
 
     return http.post(
       Uri.parse('$baseUrl$path'),
@@ -36,12 +36,27 @@ class ApiClient {
     );
   }
 
+  Future<http.Response> put(
+    String path, {
+    Object? body,
+    Map<String, String>? headers
+  }) async {
+    final resolvedHeaders = await _defaultHeaders(path, headers);
+
+    return http.put(
+      Uri.parse('$baseUrl$path'),
+      headers: resolvedHeaders,
+      body: jsonEncode(body)
+    );
+  }
+
+
   Future<http.Response> patch(
     String path, {
     Object? body,
     Map<String, String>? headers
   }) async {
-    final resolvedHeaders = await _defaultHeaders(headers);
+    final resolvedHeaders = await _defaultHeaders(path, headers);
 
     return http.patch(
       Uri.parse('$baseUrl$path'),
@@ -54,7 +69,7 @@ class ApiClient {
     String path, {
     Map<String, String>? headers
   }) async {
-    final resolvedHeaders = await _defaultHeaders(headers);
+    final resolvedHeaders = await _defaultHeaders(path, headers);
 
     return http.delete(
       Uri.parse('$baseUrl$path'),
@@ -63,16 +78,18 @@ class ApiClient {
   }
 
   Future<Map<String, String>> _defaultHeaders(
+    String path,
     Map<String, String>? headers
   ) async {
-    final token = await _tokenStorage.getToken();
-
     final baseHeaders = <String, String> {
       'Content-Type': 'application/json',
     };
 
-    if (token != null && token.isNotEmpty) {
-      baseHeaders['Authorization'] = 'Bearer $token';
+    if (path != '/login') {
+      final token = await _tokenStorage.getToken();
+      if (token != null && token.isNotEmpty) {
+        baseHeaders['Authorization'] = 'Bearer $token';
+      }
     }
 
     return {
