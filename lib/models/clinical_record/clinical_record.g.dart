@@ -10,15 +10,17 @@ ClinicalRecord _$ClinicalRecordFromJson(Map<String, dynamic> json) =>
     ClinicalRecord(
       recordId: (json['recordId'] as num?)?.toInt(),
       userId: (json['userId'] as num).toInt(),
-      recordCode: json['recordCode'] as String,
+      recordCode: _nullableStringFromJson(json['recordCode']),
       fullName: json['fullName'] as String,
       lastVisitDate: DateTime.parse(json['lastVisitDate'] as String),
-      nextAppointments: (json['nextAppointments'] as List<dynamic>)
-          .map((e) => DateTime.parse(e as String))
-          .toList(),
+      nextAppointments: _datesFromJson(json['nextAppointments'] as List),
       createdAt: json['createdAt'] == null
           ? null
           : DateTime.parse(json['createdAt'] as String),
+      lastUpdated: json['lastUpdated'] == null
+          ? null
+          : DateTime.parse(json['lastUpdated'] as String),
+      isActive: json['isActive'] as bool,
     );
 
 Map<String, dynamic> _$ClinicalRecordToJson(ClinicalRecord instance) =>
@@ -28,7 +30,6 @@ Map<String, dynamic> _$ClinicalRecordToJson(ClinicalRecord instance) =>
       'recordCode': instance.recordCode,
       'fullName': instance.fullName,
       'lastVisitDate': instance.lastVisitDate.toIso8601String(),
-      'nextAppointments': instance.nextAppointments
-          .map((e) => e.toIso8601String())
-          .toList(),
+      'nextAppointments': _datesToJson(instance.nextAppointments),
+      'isActive': instance.isActive,
     };
