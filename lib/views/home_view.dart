@@ -1,6 +1,10 @@
-import 'package:digiclinic_experiment/theme/app_text_styles.dart';
-import 'package:digiclinic_experiment/widgets/hover_icon_label_button.dart';
+import 'package:digiclinic_experiment/widgets/clinical_record_card.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import 'package:digiclinic_experiment/theme/app_text_styles.dart';
+import 'package:digiclinic_experiment/viewmodels/home_view_model.dart';
+import 'package:digiclinic_experiment/widgets/hover_icon_label_button.dart';
 
 class HomeView extends StatelessWidget {
 
@@ -15,6 +19,8 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final viewModel = context.watch<HomeViewModel>();
+
     return Center(
       child: Column(
         mainAxisSize: MainAxisSize.max,
@@ -61,7 +67,7 @@ class HomeView extends StatelessWidget {
             ],
           ),
 
-          const SizedBox(height: 35),
+          const SizedBox(height: 45),
 
           Row(
             children: [
@@ -78,6 +84,38 @@ class HomeView extends StatelessWidget {
               const Spacer(),
             ],
           ),
+
+          const SizedBox(height: 45),
+
+          Expanded(
+            child: Builder(
+              builder: (context) {
+                if (viewModel.isLoading) {
+                  return const Center(child: CircularProgressIndicator());
+                }
+
+                if (viewModel.records.isEmpty) {
+                  return const Center(child: Text('No hay expedientes que mostrar', style: AppTextStyles.inputLabel,));
+                }
+
+                return GridView.builder(
+                  padding: EdgeInsets.symmetric(horizontal: 75),
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    mainAxisSpacing: 50,
+                    crossAxisSpacing: 50,
+                    mainAxisExtent: 204
+                  ),
+                  itemCount: viewModel.records.length,
+                  itemBuilder: (_, index) {
+                    return ClinicalRecordCard(record: viewModel.records[index], onTap: onCreateRecordPressed);
+                  },
+                );
+              }
+            ),
+          ),
+
+          const SizedBox(height: 35),
         ]
       )
     );
