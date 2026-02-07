@@ -1,28 +1,15 @@
+import 'package:flutter/material.dart';
+
 import 'package:digiclinic_experiment/theme/app_colors.dart';
 import 'package:digiclinic_experiment/theme/app_text_styles.dart';
-import 'package:flutter/material.dart';
+import 'package:digiclinic_experiment/widgets/utils/reactive_colors.dart';
 
 enum HoverButtonVariant {
   primary,
   secondary
 }
 
-class _HoverColors {
-
-  const _HoverColors({
-    required this.background,
-    required this.hoverBackground,
-    required this.pressedBackground,
-    required this.foreGround
-  });
-
-  final Color background;
-  final Color hoverBackground;
-  final Color pressedBackground;
-  final Color foreGround;
-}
-
-_HoverColors _colorsForVariant(
+ReactiveColors _colorsForVariant(
   BuildContext context,
   HoverButtonVariant variant
 ) {
@@ -30,14 +17,14 @@ _HoverColors _colorsForVariant(
 
   switch (variant) {
     case HoverButtonVariant.primary:
-      return _HoverColors(
+      return ReactiveColors(
         background: scheme.primary,
         hoverBackground: scheme.onSurface,
         pressedBackground: scheme.onSecondary,
         foreGround: scheme.onPrimary
       );
     case HoverButtonVariant.secondary:
-      return _HoverColors(
+      return ReactiveColors(
         background: AppColors.buttonLightGray,
         hoverBackground: AppColors.buttonMidGray,
         pressedBackground: AppColors.buttonDarkGray,
@@ -128,7 +115,7 @@ class _HoverIconLabelButtonState extends State<HoverIconlabelbutton> {
   }
 
   Color _backgroundColor(BuildContext context) {
-    _HoverColors colors = _colorsForVariant(context, widget.variant);
+    ReactiveColors colors = _colorsForVariant(context, widget.variant);
 
     if (_pressed) {
       return colors.pressedBackground;
