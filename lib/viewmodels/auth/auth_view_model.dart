@@ -1,9 +1,18 @@
+import 'dart:async';
+import 'package:flutter/foundation.dart';
+
 import 'package:digiclinic_experiment/services/core/credential_storage.dart';
 import 'package:digiclinic_experiment/viewmodels/auth/auth_status.dart';
-import 'package:flutter/foundation.dart';
 import 'package:digiclinic_experiment/services/auth/auth_service.dart';
 import 'package:digiclinic_experiment/services/core/token_storage.dart';
 import 'package:digiclinic_experiment/services/preferences_storage.dart';
+
+class AuthEvent {
+
+  AuthEvent(this.message);
+
+  final String message;
+}
 
 class AuthViewModel extends ChangeNotifier {
 
@@ -18,6 +27,7 @@ class AuthViewModel extends ChangeNotifier {
   final TokenStorage _tokenStorage;
   final CredentialStorage _credentialStorage;
   final PreferencesStorage _preferencesStorage;
+  final _eventController = StreamController<AuthEvent>.broadcast();
 
   AuthStatus _status = AuthStatus.unauthenticated;
 
@@ -31,6 +41,12 @@ class AuthViewModel extends ChangeNotifier {
   }  
 
   String? get errorMessage => _errorMessage;
+
+  Stream<AuthEvent> get events => _eventController.stream;
+
+  void _emitEvent(AuthEvent event) {
+    _eventController.add(event);
+  }
 
   Future<void> login({
     required String email,
@@ -57,8 +73,8 @@ class AuthViewModel extends ChangeNotifier {
       _setStatus(AuthStatus.authenticated);
 
     } catch (e) {
-      _errorMessage = e.toString();
-      _setStatus(AuthStatus.error);
+      _setStatus(AuthStatus.unauthenticated);
+      _emitEvent(AuthEvent(e.toString()));
     }
   }
 
@@ -78,5 +94,11 @@ class AuthViewModel extends ChangeNotifier {
     if (email == null || password == null) return;
 
     await login(email: email, password: password, rememberMe: true);
+  }
+
+  @override
+  void dispose() {
+    _eventController.close();
+    super.dispose();
   }
 }
