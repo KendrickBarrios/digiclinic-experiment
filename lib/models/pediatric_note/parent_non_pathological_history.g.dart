@@ -13,7 +13,7 @@ ParentNonPathologicalHistory _$ParentNonPathologicalHistoryFromJson(
   maritalStatus: $enumDecode(_$MaritalStatusEnumMap, json['maritalStatus']),
   educationLevel: json['educationLevel'] as String,
   job: json['job'] as String,
-  religion: json['religion'] as String?,
+  religion: nullableStringFromJson(json['religion']),
   caffeine: json['caffeine'] as String,
   tobacco: json['tobacco'] as String,
   alcohol: json['alcohol'] as String,

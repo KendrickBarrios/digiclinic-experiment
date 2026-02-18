@@ -16,20 +16,23 @@ IdentificationForm _$IdentificationFormFromJson(Map<String, dynamic> json) =>
       createdAt: json['createdAt'] == null
           ? null
           : DateTime.parse(json['createdAt'] as String),
+      lastUpdated: json['lastUpdated'] == null
+          ? null
+          : DateTime.parse(json['lastUpdated'] as String),
       isActive: json['isActive'] as bool,
       firstName: json['firstName'] as String,
-      middleName: json['middleName'] as String?,
+      middleName: nullableStringFromJson(json['middleName']),
       firstSurname: json['firstSurname'] as String,
-      secondSurname: json['secondSurname'] as String?,
+      secondSurname: nullableStringFromJson(json['secondSurname']),
       nationalIdNumber: json['nationalIdNumber'] as String,
       ethnicity: json['ethnicity'] as String,
       birthDate: DateTime.parse(json['birthDate'] as String),
       age: (json['age'] as num).toInt(),
       gender: $enumDecode(_$GenderEnumMap, json['gender']),
       maritalStatus: json['maritalStatus'] as String,
-      religion: json['religion'] as String?,
+      religion: nullableStringFromJson(json['religion']),
       educationLevel: json['educationLevel'] as String,
-      job: json['job'] as String?,
+      job: nullableStringFromJson(json['job']),
       community: json['community'] as String,
       municipality: json['municipality'] as String,
       city: json['city'] as String,
@@ -37,13 +40,11 @@ IdentificationForm _$IdentificationFormFromJson(Map<String, dynamic> json) =>
       contactAddress: json['contactAddress'] as String,
       contactRelationship: json['contactRelationship'] as String,
       contactTelephone: json['contactTelephone'] as String,
-      employer: json['employer'] as String?,
-      employerAddress: json['employerAddress'] as String?,
-      motherNameIdNumber: json['motherNameIdNumber'] as String?,
-      fatherNameIdNumber: json['fatherNameIdNumber'] as String?,
-      addressList: (json['addressList'] as List<dynamic>?)
-          ?.map((e) => e as String)
-          .toList(),
+      employer: nullableStringFromJson(json['employer']),
+      employerAddress: nullableStringFromJson(json['employerAddress']),
+      motherNameIdNumber: nullableStringFromJson(json['motherNameIdNumber']),
+      fatherNameIdNumber: nullableStringFromJson(json['fatherNameIdNumber']),
+      addressList: stringListFromJson(json['addressList']),
     );
 
 Map<String, dynamic> _$IdentificationFormToJson(IdentificationForm instance) =>
@@ -78,7 +79,7 @@ Map<String, dynamic> _$IdentificationFormToJson(IdentificationForm instance) =>
       'employerAddress': instance.employerAddress,
       'motherNameIdNumber': instance.motherNameIdNumber,
       'fatherNameIdNumber': instance.fatherNameIdNumber,
-      'addressList': instance.addressList,
+      'addressList': stringListToJson(instance.addressList),
     };
 
 const _$GenderEnumMap = {Gender.M: 'M', Gender.F: 'F'};

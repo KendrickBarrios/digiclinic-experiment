@@ -1,5 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 
+import 'package:digiclinic_experiment/models/model_utils.dart';
+
 part 'prenatal_history.g.dart';
 
 @JsonSerializable()
@@ -26,8 +28,11 @@ class PrenatalHistory {
   final int cesareanCount;
   final int abortionCount;
   final DateTime lastMenstrualPeriod;
+  @JsonKey(fromJson: nullableStringFromJson)
   final String? abortionInfo;
+  @JsonKey(fromJson: nullableStringFromJson)
   final String? cesareanCauses;
+  @JsonKey(fromJson: nullableStringFromJson)
   final String? cesareanEstablishment;
   final String prenatalAppointmentsInfo;
   final String motherChronicDiseases;

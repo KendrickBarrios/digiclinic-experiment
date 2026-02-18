@@ -1,3 +1,4 @@
+import 'package:digiclinic_experiment/models/model_utils.dart';
 import 'package:digiclinic_experiment/models/note_asset/personal_pathological_record.dart';
 import 'package:digiclinic_experiment/models/pediatric_note/birth_history.dart';
 import 'package:digiclinic_experiment/models/pediatric_note/pediatric_diet.dart';
@@ -39,6 +40,7 @@ class PediatricPersonalHistory {
   final List<PersonalPathologicalRecord>? previousSurgeries;
   final List<PersonalPathologicalRecord>? chronicDiseases;
   final List<PersonalPathologicalRecord>? hospitalizations;
+  @JsonKey(fromJson: nullableStringFromJson)
   final String? others;
 
   factory PediatricPersonalHistory.fromJson(Map<String, dynamic> json) =>

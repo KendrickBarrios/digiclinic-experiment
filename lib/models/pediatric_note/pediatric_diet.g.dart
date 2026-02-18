@@ -12,8 +12,10 @@ PediatricDiet _$PediatricDietFromJson(Map<String, dynamic> json) =>
       mixedBreastFeeding: json['mixedBreastFeeding'] as bool,
       exclusiveBreastfeedingDuration:
           json['exclusiveBreastfeedingDuration'] as String,
-      mixedBreastFeedingDuration: json['mixedBreastFeedingDuration'] as String?,
-      weaning: json['weaning'] as String?,
+      mixedBreastFeedingDuration: nullableStringFromJson(
+        json['mixedBreastFeedingDuration'],
+      ),
+      weaning: nullableStringFromJson(json['weaning']),
     );
 
 Map<String, dynamic> _$PediatricDietToJson(PediatricDiet instance) =>

@@ -15,6 +15,9 @@ PediatricNote _$PediatricNoteFromJson(Map<String, dynamic> json) =>
       createdAt: json['createdAt'] == null
           ? null
           : DateTime.parse(json['createdAt'] as String),
+      lastUpdated: json['lastUpdated'] == null
+          ? null
+          : DateTime.parse(json['lastUpdated'] as String),
       visitDateTime: DateTime.parse(json['visitDateTime'] as String),
       infoSource: json['infoSource'] as String,
       sourceRelationship: json['sourceRelationship'] as String,
@@ -38,10 +41,8 @@ PediatricNote _$PediatricNoteFromJson(Map<String, dynamic> json) =>
       physicalExam: PhysicalExam.fromJson(
         json['physicalExam'] as Map<String, dynamic>,
       ),
-      observations: json['observations'] as String?,
-      problemsList: (json['problemsList'] as List<dynamic>)
-          .map((e) => e as String)
-          .toList(),
+      observations: nullableStringFromJson(json['observations']),
+      problemsList: stringListFromJson(json['problemsList']),
       isActive: json['isActive'] as bool,
     );
 
@@ -63,6 +64,6 @@ Map<String, dynamic> _$PediatricNoteToJson(PediatricNote instance) =>
       'pediatricPersonalHistory': instance.pediatricPersonalHistory,
       'physicalExam': instance.physicalExam,
       'observations': instance.observations,
-      'problemsList': instance.problemsList,
+      'problemsList': stringListToJson(instance.problemsList),
       'isActive': instance.isActive,
     };

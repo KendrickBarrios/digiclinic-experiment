@@ -1,5 +1,7 @@
-import 'package:digiclinic_experiment/models/note_asset/marital_status.dart';
 import 'package:json_annotation/json_annotation.dart';
+
+import 'package:digiclinic_experiment/models/model_utils.dart';
+import 'package:digiclinic_experiment/models/note_asset/marital_status.dart';
 
 part 'parent_non_pathological_history.g.dart';
 
@@ -22,6 +24,7 @@ class ParentNonPathologicalHistory {
   final MaritalStatus maritalStatus;
   final String educationLevel;
   final String job;
+  @JsonKey(fromJson: nullableStringFromJson)
   final String? religion;
   final String caffeine;
   final String tobacco;

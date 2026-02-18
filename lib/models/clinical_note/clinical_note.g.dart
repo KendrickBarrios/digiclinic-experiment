@@ -14,6 +14,9 @@ ClinicalNote _$ClinicalNoteFromJson(Map<String, dynamic> json) => ClinicalNote(
   createdAt: json['createdAt'] == null
       ? null
       : DateTime.parse(json['createdAt'] as String),
+  lastUpdated: json['lastUpdated'] == null
+      ? null
+      : DateTime.parse(json['lastUpdated'] as String),
   visitDatetime: DateTime.parse(json['visitDatetime'] as String),
   reasonForConsultation: json['reasonForConsultation'] as String,
   presentIllnessHistory: json['presentIllnessHistory'] as String,
@@ -39,7 +42,7 @@ ClinicalNote _$ClinicalNoteFromJson(Map<String, dynamic> json) => ClinicalNote(
   physicalExam: PhysicalExam.fromJson(
     json['physicalExam'] as Map<String, dynamic>,
   ),
-  observations: json['observations'] as String?,
+  observations: nullableStringFromJson(json['observations']),
   problemsList: (json['problemsList'] as List<dynamic>)
       .map((e) => e as String)
       .toList(),

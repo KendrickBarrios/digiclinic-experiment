@@ -31,7 +31,7 @@ class PediatricNote {
     required this.pediatricPersonalHistory,
     required this.physicalExam,
     this.observations,
-    required this.problemsList,
+    this.problemsList,
     required this.isActive
   });
 
@@ -56,7 +56,11 @@ class PediatricNote {
   final PhysicalExam physicalExam;
   @JsonKey(fromJson: nullableStringFromJson)
   final String? observations;
-  final List<String> problemsList;
+  @JsonKey(
+    fromJson: stringListFromJson,
+    toJson: stringListToJson
+  )
+  final List<String>? problemsList;
   final bool isActive;
 
   factory PediatricNote.fromJson(Map<String, dynamic> json) =>

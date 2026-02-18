@@ -6,24 +6,23 @@ part of 'prenatal_history.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-PrenatalHistory _$PrenatalHistoryFromJson(Map<String, dynamic> json) =>
-    PrenatalHistory(
-      gravidityCount: (json['gravidityCount'] as num).toInt(),
-      parityCount: (json['parityCount'] as num).toInt(),
-      cesareanCount: (json['cesareanCount'] as num).toInt(),
-      abortionCount: (json['abortionCount'] as num).toInt(),
-      lastMenstrualPeriod: DateTime.parse(
-        json['lastMenstrualPeriod'] as String,
-      ),
-      abortionInfo: json['abortionInfo'] as String?,
-      cesareanCauses: json['cesareanCauses'] as String?,
-      cesareanEstablishment: json['cesareanEstablishment'] as String?,
-      prenatalAppointmentsInfo: json['prenatalAppointmentsInfo'] as String,
-      motherChronicDiseases: json['motherChronicDiseases'] as String,
-      pregnancyDiseases: json['pregnancyDiseases'] as String,
-      pregnancyMedication: json['pregnancyMedication'] as String,
-      pregnancyComplications: json['pregnancyComplications'] as String,
-    );
+PrenatalHistory _$PrenatalHistoryFromJson(
+  Map<String, dynamic> json,
+) => PrenatalHistory(
+  gravidityCount: (json['gravidityCount'] as num).toInt(),
+  parityCount: (json['parityCount'] as num).toInt(),
+  cesareanCount: (json['cesareanCount'] as num).toInt(),
+  abortionCount: (json['abortionCount'] as num).toInt(),
+  lastMenstrualPeriod: DateTime.parse(json['lastMenstrualPeriod'] as String),
+  abortionInfo: nullableStringFromJson(json['abortionInfo']),
+  cesareanCauses: nullableStringFromJson(json['cesareanCauses']),
+  cesareanEstablishment: nullableStringFromJson(json['cesareanEstablishment']),
+  prenatalAppointmentsInfo: json['prenatalAppointmentsInfo'] as String,
+  motherChronicDiseases: json['motherChronicDiseases'] as String,
+  pregnancyDiseases: json['pregnancyDiseases'] as String,
+  pregnancyMedication: json['pregnancyMedication'] as String,
+  pregnancyComplications: json['pregnancyComplications'] as String,
+);
 
 Map<String, dynamic> _$PrenatalHistoryToJson(PrenatalHistory instance) =>
     <String, dynamic>{
