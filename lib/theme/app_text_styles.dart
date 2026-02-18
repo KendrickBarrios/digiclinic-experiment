@@ -33,6 +33,13 @@ class AppTextStyles {
     color: Colors.white 
   );
 
+  static const TextStyle popupText = TextStyle(
+    fontFamily: fontFamily,
+    fontSize: 40,
+    fontWeight: FontWeight.w600,
+    color: Colors.black
+  );
+
   static const TextStyle sidebarLabel = TextStyle(
     fontFamily: fontFamily,
     fontSize: 24,
