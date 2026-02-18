@@ -1,5 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 
+import 'package:digiclinic_experiment/models/model_utils.dart';
+
 part 'postnatal_history.g.dart';
 
 @JsonSerializable()
@@ -23,6 +25,7 @@ class PostnatalHistory {
   final double weight;
   final double height;
   final bool asphyxiaSigns;
+  @JsonKey(fromJson: nullableStringFromJson)
   final String? asphyxiaInfo;
   final bool zeroSeparation;
   final bool permanentlyWithTheirMother;

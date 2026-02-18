@@ -1,5 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 
+import 'package:digiclinic_experiment/models/model_utils.dart';
 import 'adult_personal_history.dart';
 import 'job_history.dart';
 import 'obstetric_gynecological_history.dart';
@@ -18,6 +19,7 @@ class ClinicalNote {
     required this.recordId,
     required this.formId,
     this.createdAt,
+    this.lastUpdated,
     required this.visitDatetime,
     required this.reasonForConsultation,
     required this.presentIllnessHistory,
@@ -38,6 +40,8 @@ class ClinicalNote {
   final int formId;
   @JsonKey(includeToJson: false)
   final DateTime? createdAt;
+  @JsonKey(includeToJson: false)
+  final DateTime? lastUpdated;
   final DateTime visitDatetime;
   final String reasonForConsultation;
   final String presentIllnessHistory;
@@ -47,6 +51,7 @@ class ClinicalNote {
   final ObstetricGynecologicalHistory? obstetricGynecologicalHistory;
   final JobHistory? jobHistory;
   final PhysicalExam physicalExam;
+  @JsonKey(fromJson: nullableStringFromJson)
   final String? observations;
   final List<String> problemsList;
   final bool isActive;

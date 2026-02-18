@@ -1,5 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 
+import 'package:digiclinic_experiment/models/model_utils.dart';
+
 part 'physical_exam.g.dart';
 
 @JsonSerializable()
@@ -58,10 +60,13 @@ class PhysicalExam {
   final String lungFields;
   final String cardiac;
   final String abdomenAndPelvis;
+  @JsonKey(fromJson: nullableStringFromJson)
   final String? rectalExam;
   final String upperLimbs;
   final String lowerLimbs;
+  @JsonKey(fromJson: nullableStringFromJson)
   final String? urogenital;
+  @JsonKey(fromJson: nullableStringFromJson)
   final String? gynecological;
   final String neurological;
 

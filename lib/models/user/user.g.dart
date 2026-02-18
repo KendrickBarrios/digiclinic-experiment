@@ -13,9 +13,15 @@ User _$UserFromJson(Map<String, dynamic> json) => User(
   username: json['username'] as String,
   password: json['password'] as String,
   firstName: json['firstName'] as String,
-  middleName: json['middleName'] as String?,
+  middleName: nullableStringFromJson(json['middleName']),
   firstSurname: json['firstSurname'] as String,
-  secondSurname: json['secondSurname'] as String?,
+  secondSurname: nullableStringFromJson(json['secondSurname']),
+  createdAt: json['createdAt'] == null
+      ? null
+      : DateTime.parse(json['createdAt'] as String),
+  lastUpdated: json['lastUpdated'] == null
+      ? null
+      : DateTime.parse(json['lastUpdated'] as String),
   isActive: json['isActive'] as bool,
 );
 

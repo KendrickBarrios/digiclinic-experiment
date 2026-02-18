@@ -13,7 +13,7 @@ PostnatalHistory _$PostnatalHistoryFromJson(Map<String, dynamic> json) =>
       weight: (json['weight'] as num).toDouble(),
       height: (json['height'] as num).toDouble(),
       asphyxiaSigns: json['asphyxiaSigns'] as bool,
-      asphyxiaInfo: json['asphyxiaInfo'] as String?,
+      asphyxiaInfo: nullableStringFromJson(json['asphyxiaInfo']),
       zeroSeparation: json['zeroSeparation'] as bool,
       permanentlyWithTheirMother: json['permanentlyWithTheirMother'] as bool,
       hoursWithTheirMother: (json['hoursWithTheirMother'] as num).toInt(),

@@ -1,5 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 
+import 'package:digiclinic_experiment/models/model_utils.dart';
+
 part 'socioeconomic_context.g.dart';
 
 @JsonSerializable()
@@ -31,6 +33,7 @@ class SocioeconomicContext {
   final int peopleNumber;
   final String animals;
   final bool phone;
+  @JsonKey(fromJson: nullableStringFromJson)
   final String? others;
 
   factory SocioeconomicContext.fromJson(Map<String, dynamic> json) =>

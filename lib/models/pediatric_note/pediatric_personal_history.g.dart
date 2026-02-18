@@ -50,7 +50,7 @@ PediatricPersonalHistory _$PediatricPersonalHistoryFromJson(
         (e) => PersonalPathologicalRecord.fromJson(e as Map<String, dynamic>),
       )
       .toList(),
-  others: json['others'] as String?,
+  others: nullableStringFromJson(json['others']),
 );
 
 Map<String, dynamic> _$PediatricPersonalHistoryToJson(

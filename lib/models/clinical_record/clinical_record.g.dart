@@ -10,10 +10,10 @@ ClinicalRecord _$ClinicalRecordFromJson(Map<String, dynamic> json) =>
     ClinicalRecord(
       recordId: (json['recordId'] as num?)?.toInt(),
       userId: (json['userId'] as num).toInt(),
-      recordCode: _nullableStringFromJson(json['recordCode']),
+      recordCode: nullableStringFromJson(json['recordCode']),
       fullName: json['fullName'] as String,
       lastVisitDate: DateTime.parse(json['lastVisitDate'] as String),
-      nextAppointments: _datesFromJson(json['nextAppointments'] as List),
+      nextAppointments: datesFromJson(json['nextAppointments'] as List),
       createdAt: json['createdAt'] == null
           ? null
           : DateTime.parse(json['createdAt'] as String),
@@ -30,6 +30,6 @@ Map<String, dynamic> _$ClinicalRecordToJson(ClinicalRecord instance) =>
       'recordCode': instance.recordCode,
       'fullName': instance.fullName,
       'lastVisitDate': instance.lastVisitDate.toIso8601String(),
-      'nextAppointments': _datesToJson(instance.nextAppointments),
+      'nextAppointments': datesToJson(instance.nextAppointments),
       'isActive': instance.isActive,
     };

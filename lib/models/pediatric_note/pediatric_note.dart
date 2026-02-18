@@ -1,9 +1,11 @@
+import 'package:json_annotation/json_annotation.dart';
+
+import 'package:digiclinic_experiment/models/model_utils.dart';
 import 'package:digiclinic_experiment/models/note_asset/pathological_family_history.dart';
 import 'package:digiclinic_experiment/models/note_asset/physical_exam.dart';
 import 'package:digiclinic_experiment/models/note_asset/systems_review.dart';
 import 'package:digiclinic_experiment/models/pediatric_note/non_pathological_family_history.dart';
 import 'package:digiclinic_experiment/models/pediatric_note/pediatric_personal_history.dart';
-import 'package:json_annotation/json_annotation.dart';
 
 part 'pediatric_note.g.dart';
 
@@ -16,6 +18,7 @@ class PediatricNote {
     required this.recordId,
     required this.formId,
     this.createdAt,
+    this.lastUpdated,
     required this.visitDateTime,
     required this.infoSource,
     required this.sourceRelationship,
@@ -28,7 +31,7 @@ class PediatricNote {
     required this.pediatricPersonalHistory,
     required this.physicalExam,
     this.observations,
-    required this.problemsList,
+    this.problemsList,
     required this.isActive
   });
 
@@ -38,6 +41,8 @@ class PediatricNote {
   final int formId;
   @JsonKey(includeToJson: false)
   final DateTime? createdAt;
+  @JsonKey(includeToJson: false)
+  final DateTime? lastUpdated;
   final DateTime visitDateTime;
   final String infoSource;
   final String sourceRelationship;
@@ -49,8 +54,13 @@ class PediatricNote {
   final PathologicalFamilyHistory? pathologicalFamilyHistory;
   final PediatricPersonalHistory pediatricPersonalHistory;
   final PhysicalExam physicalExam;
+  @JsonKey(fromJson: nullableStringFromJson)
   final String? observations;
-  final List<String> problemsList;
+  @JsonKey(
+    fromJson: stringListFromJson,
+    toJson: stringListToJson
+  )
+  final List<String>? problemsList;
   final bool isActive;
 
   factory PediatricNote.fromJson(Map<String, dynamic> json) =>

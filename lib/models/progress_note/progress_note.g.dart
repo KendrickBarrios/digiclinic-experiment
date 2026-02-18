@@ -13,6 +13,9 @@ ProgressNote _$ProgressNoteFromJson(Map<String, dynamic> json) => ProgressNote(
   createdAt: json['createdAt'] == null
       ? null
       : DateTime.parse(json['createdAt'] as String),
+  lastUpdated: json['lastUpdated'] == null
+      ? null
+      : DateTime.parse(json['lastUpdated'] as String),
   progressRecords: (json['progressRecords'] as List<dynamic>?)
       ?.map((e) => ProgressRecord.fromJson(e as Map<String, dynamic>))
       .toList(),

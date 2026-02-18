@@ -29,11 +29,11 @@ PhysicalExam _$PhysicalExamFromJson(Map<String, dynamic> json) => PhysicalExam(
   lungFields: json['lungFields'] as String,
   cardiac: json['cardiac'] as String,
   abdomenAndPelvis: json['abdomenAndPelvis'] as String,
-  rectalExam: json['rectalExam'] as String?,
+  rectalExam: nullableStringFromJson(json['rectalExam']),
   upperLimbs: json['upperLimbs'] as String,
   lowerLimbs: json['lowerLimbs'] as String,
-  urogenital: json['urogenital'] as String?,
-  gynecological: json['gynecological'] as String?,
+  urogenital: nullableStringFromJson(json['urogenital']),
+  gynecological: nullableStringFromJson(json['gynecological']),
   neurological: json['neurological'] as String,
 );
 

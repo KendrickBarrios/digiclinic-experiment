@@ -20,7 +20,7 @@ SocioeconomicContext _$SocioeconomicContextFromJson(
   peopleNumber: (json['peopleNumber'] as num).toInt(),
   animals: json['animals'] as String,
   phone: json['phone'] as bool,
-  others: json['others'] as String?,
+  others: nullableStringFromJson(json['others']),
 );
 
 Map<String, dynamic> _$SocioeconomicContextToJson(

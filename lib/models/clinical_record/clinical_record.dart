@@ -1,5 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 
+import 'package:digiclinic_experiment/models/model_utils.dart';
 part 'clinical_record.g.dart';
 
 @JsonSerializable()
@@ -19,13 +20,13 @@ class ClinicalRecord {
 
   final int? recordId;
   final int userId;
-  @JsonKey(fromJson: _nullableStringFromJson)
+  @JsonKey(fromJson: nullableStringFromJson)
   final String? recordCode;
   final String fullName;
   final DateTime lastVisitDate;
   @JsonKey(
-    fromJson: _datesFromJson,
-    toJson: _datesToJson
+    fromJson: datesFromJson,
+    toJson: datesToJson
   )
   final List<DateTime> nextAppointments;
   @JsonKey(includeToJson: false)
@@ -38,15 +39,4 @@ class ClinicalRecord {
     _$ClinicalRecordFromJson(json);
   
   Map<String, dynamic> toJson() => _$ClinicalRecordToJson(this);
-}
-
-List<DateTime> _datesFromJson(List<dynamic> json) =>
-  json.map((e) => DateTime.parse(e as String)).toList();
-
-List<String> _datesToJson(List<DateTime> dates) =>
-  dates.map((e) => e.toIso8601String()).toList();
-
-String? _nullableStringFromJson(dynamic value) {
-  if (value == null) return null;
-  return value as String;
 }
