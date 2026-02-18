@@ -30,19 +30,10 @@ class _AuthGateState extends State<AuthGate> {
   Widget build(BuildContext context) {
     final auth = context.watch<AuthViewModel>();
 
-    switch (auth.status) {
-      case AuthStatus.loading:
-      case AuthStatus.unknown:
-        return const Scaffold(
-          body: Center(child: CircularProgressIndicator()),
-        );
-      
-      case AuthStatus.authenticated:
-        return const MainShell();
-      
-      case AuthStatus.unauthenticated:
-      case AuthStatus.error:
-        return const LoginView();
+    if (auth.status == AuthStatus.authenticated) {
+      return const MainShell();
     }
+
+    return const LoginView();
   }
 }
