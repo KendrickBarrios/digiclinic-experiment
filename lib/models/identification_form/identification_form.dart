@@ -1,6 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'gender.dart';
 
+import 'gender.dart';
+import 'package:digiclinic_experiment/models/model_utils.dart';
 part 'identification_form.g.dart';
 
 @JsonSerializable()
@@ -13,6 +14,7 @@ class IdentificationForm {
     required this.recordCode,
     required this.visitDate,
     this.createdAt,
+    this.lastUpdated,
     required this.isActive,
     required this.firstName,
     this.middleName,
@@ -48,10 +50,14 @@ class IdentificationForm {
   final DateTime visitDate;
   @JsonKey(includeToJson: false)
   final DateTime? createdAt;
+  @JsonKey(includeToJson: false)
+  final DateTime? lastUpdated;
   final bool isActive;
   final String firstName;
+  @JsonKey(fromJson: nullableStringFromJson)
   final String? middleName;
   final String firstSurname;
+  @JsonKey(fromJson: nullableStringFromJson)
   final String? secondSurname;
   final String nationalIdNumber;
   final String ethnicity;
@@ -59,8 +65,10 @@ class IdentificationForm {
   final int age;
   final Gender gender;
   final String maritalStatus;
+  @JsonKey(fromJson: nullableStringFromJson)
   final String? religion;
   final String educationLevel;
+  @JsonKey(fromJson: nullableStringFromJson)
   final String? job;
   final String community;
   final String municipality;
@@ -69,10 +77,18 @@ class IdentificationForm {
   final String contactAddress;
   final String contactRelationship;
   final String contactTelephone;
+  @JsonKey(fromJson: nullableStringFromJson)
   final String? employer;
+  @JsonKey(fromJson: nullableStringFromJson)
   final String? employerAddress;
+  @JsonKey(fromJson: nullableStringFromJson)
   final String? motherNameIdNumber;
+  @JsonKey(fromJson: nullableStringFromJson)
   final String? fatherNameIdNumber;
+  @JsonKey(
+    fromJson: stringListFromJson,
+    toJson: stringListToJson
+  )
   final List<String>? addressList;
 
   factory IdentificationForm.fromJson(Map<String, dynamic> json) =>
