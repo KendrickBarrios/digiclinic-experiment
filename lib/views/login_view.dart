@@ -1,9 +1,12 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'package:digiclinic_experiment/theme/app_colors.dart';
 import 'package:digiclinic_experiment/theme/app_text_styles.dart';
 import 'package:digiclinic_experiment/widgets/inputs/app_text_field.dart';
+import 'package:digiclinic_experiment/widgets/popup.dart';
 import 'package:digiclinic_experiment/viewmodels/auth/auth_view_model.dart';
 import 'package:digiclinic_experiment/viewmodels/auth/auth_status.dart';
 
@@ -24,10 +27,26 @@ class _LoginViewState extends State<LoginView> {
   final _passwordFocus = FocusNode();
 
   bool _rememberMe = false;
+  AuthStatus? _previousStatus;
+
+  late StreamSubscription _authSubscription;
 
   @override
   void initState() {
     super.initState();
+
+    final auth = context.read<AuthViewModel>();
+
+    _authSubscription = auth.events.listen((event) {
+      if (!mounted) return;
+
+      Popup.show(
+        context,
+        message: event.message,
+        type: PopupType.error
+      );
+    });
+
     _emailFocus.addListener(() => setState(() {}));
     _passwordFocus.addListener(() => setState(() {}));
   }
@@ -37,6 +56,7 @@ class _LoginViewState extends State<LoginView> {
     _emailController.dispose();
     _passwordController.dispose();
     _emailFocus.dispose();
+    _authSubscription.cancel();
     super.dispose();
   }
 
@@ -131,18 +151,11 @@ class _LoginViewState extends State<LoginView> {
                           rememberMe: _rememberMe
                           );
                         },
-                      child: const Text('Ingresar'),
+                      child: auth.status == AuthStatus.loading
+                        ? const CircularProgressIndicator()
+                        : const Text('Ingresar')
                     ),
                   ),
-              
-                  if (auth.status == AuthStatus.error)
-                    Padding(
-                      padding: const EdgeInsets.only(top: 12),
-                      child: Text(
-                        auth.errorMessage ?? 'Error',
-                        style: const TextStyle(color: Colors.red)
-                      )
-                    )
                 ],
               ),
             ),
