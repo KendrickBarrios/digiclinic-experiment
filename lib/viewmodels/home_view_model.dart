@@ -25,7 +25,7 @@ class HomeViewModel extends ChangeNotifier {
     notifyListeners();
 
     try {
-      _records = await _clinicalRecordService.getByLastUpdated();
+      _records = await _clinicalRecordService.getActiveByLastUpdated();
     } catch (e, s) {
       debugPrint(e.toString());
       debugPrint(s.toString());
