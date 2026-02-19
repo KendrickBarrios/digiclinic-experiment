@@ -1,7 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 
 import 'progress_record.dart';
-import 'package:digiclinic_experiment/models/model_utils.dart';
 
 part 'progress_note.g.dart';
 
