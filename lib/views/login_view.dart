@@ -27,7 +27,6 @@ class _LoginViewState extends State<LoginView> {
   final _passwordFocus = FocusNode();
 
   bool _rememberMe = false;
-  AuthStatus? _previousStatus;
 
   late StreamSubscription _authSubscription;
 
