@@ -1,7 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
 
-import 'package:digiclinic_experiment/models/model_utils.dart';
-
 part 'vaccine_record.g.dart';
 
 @JsonSerializable()

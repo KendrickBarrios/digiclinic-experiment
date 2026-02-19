@@ -1,9 +1,10 @@
-import 'package:digiclinic_experiment/widgets/clinical_record_card.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import 'package:digiclinic_experiment/models/clinical_record/clinical_record.dart';
 import 'package:digiclinic_experiment/theme/app_text_styles.dart';
 import 'package:digiclinic_experiment/viewmodels/home_view_model.dart';
+import 'package:digiclinic_experiment/widgets/clinical_record_card.dart';
 import 'package:digiclinic_experiment/widgets/hover_icon_label_button.dart';
 
 class HomeView extends StatelessWidget {
@@ -11,11 +12,13 @@ class HomeView extends StatelessWidget {
   const HomeView({
     super.key,
     required this.onSearchPressed,
-    required this.onCreateRecordPressed
+    required this.onCreateRecordPressed,
+    required this.onRecordCardPressed
   });
 
   final VoidCallback onSearchPressed;
   final VoidCallback onCreateRecordPressed;
+  final void Function(ClinicalRecord record) onRecordCardPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -108,7 +111,8 @@ class HomeView extends StatelessWidget {
                   ),
                   itemCount: viewModel.records.length,
                   itemBuilder: (_, index) {
-                    return ClinicalRecordCard(record: viewModel.records[index], onTap: onCreateRecordPressed);
+                    final record = viewModel.records[index];
+                    return ClinicalRecordCard(record: record, onTap: () => onRecordCardPressed(record));
                   },
                 );
               }

@@ -1,20 +1,21 @@
 import 'dart:convert';
 
-import 'package:digiclinic_experiment/services/core/api_client.dart';
 import 'package:digiclinic_experiment/models/clinical_record/clinical_record.dart';
+import 'package:digiclinic_experiment/services/core/api_client.dart';
 
 class ClinicalRecordService {
 
   ClinicalRecordService(this._apiClient);
 
   final ApiClient _apiClient;
+  final String _baseRoute = '/records';
 
-  Future<List<ClinicalRecord>> getByLastUpdated({
+  Future<List<ClinicalRecord>> getActiveByLastUpdated({
     int page = 0,
     int size = 10
   }) async {
     final response = await _apiClient.get(
-      '/records/by-last-updated?page$page&size=$size'
+      '$_baseRoute/active-by-last-updated?page=$page&size=$size'
     );
 
     if (response.statusCode != 200) {

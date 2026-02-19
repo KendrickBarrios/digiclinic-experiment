@@ -1,5 +1,7 @@
+import 'package:digiclinic_experiment/views/record_view.dart';
 import 'package:flutter/material.dart';
 
+import 'package:digiclinic_experiment/models/clinical_record/clinical_record.dart';
 import 'package:digiclinic_experiment/navigation/app_route.dart';
 import 'package:digiclinic_experiment/widgets/side_bar.dart';
 
@@ -22,9 +24,12 @@ class _MainShellState extends State<MainShell> {
 
   AppRoute _currentRoute = AppRoute.home;
 
-  void navigateTo(AppRoute route) {
+  ClinicalRecord? _selectedRecord;
+
+  void navigateTo(AppRoute route, {ClinicalRecord? record}) {
     setState(() {
       _currentRoute = route;
+      _selectedRecord = record;
     });
   }
 
@@ -34,6 +39,7 @@ class _MainShellState extends State<MainShell> {
         return HomeView(
           onSearchPressed: () => navigateTo(AppRoute.search),
           onCreateRecordPressed: () => navigateTo(AppRoute.newRecord),
+          onRecordCardPressed: (record) => navigateTo(AppRoute.recordView, record: record),
         );
       case AppRoute.search:
         return const SearchView();
@@ -45,6 +51,8 @@ class _MainShellState extends State<MainShell> {
         return const AccountView();
       case AppRoute.settings:
         return const SettingsView();
+      case AppRoute.recordView:
+        return RecordView(record: _selectedRecord!);
     }
   }
 
