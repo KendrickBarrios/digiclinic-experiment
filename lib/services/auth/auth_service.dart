@@ -1,9 +1,10 @@
 import 'dart:convert';
 
-import 'package:digiclinic_experiment/services/core/api_client.dart';
 import 'package:digiclinic_experiment/models/api_response.dart';
 import 'package:digiclinic_experiment/models/auth/authentication_request.dart';
 import 'package:digiclinic_experiment/models/auth/authentication_response.dart';
+import 'package:digiclinic_experiment/services/core/api_client.dart';
+import 'package:digiclinic_experiment/services/service_utils.dart';
 
 class AuthService {
   AuthService(this._apiClient);
@@ -34,8 +35,8 @@ class AuthService {
       return token;
     }
 
-    if (response.statusCode == 401) throw Exception(json['message'] ?? 'Credenciales inválidas');
+    evaluateStatusCode(response.statusCode, EndpointType.login, 'login');
 
-    throw Exception(json['message'] ?? 'Error al autenticar');
+    throw Exception('Error inesperado en login');
   }
 }
