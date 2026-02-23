@@ -41,7 +41,7 @@ class _LoginViewState extends State<LoginView> {
 
       Popup.show(
         context,
-        message: event.message,
+        message: event.message.replaceFirst('Exception: ', ''),
         type: PopupType.error
       );
     });
