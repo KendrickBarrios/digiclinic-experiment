@@ -31,13 +31,15 @@ void evaluateStatusCode(int code, EndpointType type, String resource) {
 
   switch (type) {
     case EndpointType.byUser:
-      messageComplement = ' del usuario';
+      messageComplement = ' del usuario.';
       break;
     case EndpointType.byRecord:
-      messageComplement = ' del expediente';
+      messageComplement = ' del expediente.';
       break;
+    case EndpointType.login:
+      messageComplement = ', por favor, verifique las credenciales proporcionadas.';
     default:
-      messageComplement = '';
+      messageComplement = '.';
   }
 
   throw Exception('$messageStart$messageComplement');

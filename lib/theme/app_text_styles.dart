@@ -19,6 +19,13 @@ class AppTextStyles {
     color: Colors.black
   );
   
+  static const TextStyle subTitleBold = TextStyle(
+    fontFamily: fontFamily,
+    fontSize: 40,
+    fontWeight: FontWeight.w700,
+    color: Colors.black
+  );
+
   static const TextStyle buttonText = TextStyle(
     fontFamily: fontFamily,
     fontSize: 24,
