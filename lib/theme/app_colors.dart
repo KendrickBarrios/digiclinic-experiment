@@ -16,4 +16,13 @@ class AppColors {
   static const Color buttonLightGray = Color(0xFFCCCCCC);
   static const Color buttonMidGray = Color(0xFFAAAAAA);
   static const Color buttonDarkGray = Color(0xFF666666);
+
+  // secondary scale (grayish)
+  static const Color lightestGrayBlue = Color(0xFFB2CCE1);
+  static const Color lighterGrayBlue = Color(0xFF8DB3D3);
+  static const Color midLightGrayBlue = Color(0xFF699BC4);
+  static const Color grayBlue = Color(0xFF4682B4);
+  static const Color midDarkGrayBlue = Color(0xFF38678F);
+  static const Color darkerGrayBlue = Color(0xFF294D6B);
+  static const Color darkestGrayBlue = Color(0xFF1b3246);
 }
