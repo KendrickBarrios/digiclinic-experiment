@@ -1,9 +1,9 @@
-import 'package:digiclinic_experiment/theme/app_colors.dart';
-import 'package:digiclinic_experiment/theme/app_text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 import 'package:digiclinic_experiment/models/clinical_record/clinical_record.dart';
+import 'package:digiclinic_experiment/theme/app_colors.dart';
+import 'package:digiclinic_experiment/theme/app_text_styles.dart';
 
 class ClinicalRecordCard extends StatefulWidget {
 
