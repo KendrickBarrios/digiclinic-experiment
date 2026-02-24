@@ -11,7 +11,10 @@ class Popup {
     required String message,
     PopupType type = PopupType.success,
     IconData icon = Icons.check,
-    Duration duration = const Duration(seconds: 3)
+    Duration duration = const Duration(seconds: 3),
+    double top = 840,
+    double left = 128,
+    double right = 128
   }) {
 
     final overlay = Overlay.of(context);
@@ -22,6 +25,9 @@ class Popup {
         message: message,
         type: type,
         duration: duration,
+        top: top,
+        left: left,
+        right: right,
         onDismissed: () => overlayEntry.remove(),
       ),
     );
@@ -36,12 +42,18 @@ class _Popup extends StatefulWidget {
     required this.message,
     required this.type,
     required this.duration,
+    required this.top,
+    required this.left,
+    required this.right,
     required this.onDismissed
   });
 
   final String message;
   final PopupType type;
   final Duration duration;
+  final double top;
+  final double left;
+  final double right;
   final VoidCallback onDismissed;
 
   @override
@@ -115,9 +127,9 @@ class _PopupState extends State<_Popup> with SingleTickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Positioned(
-      top: MediaQuery.of(context).padding.top + 840,
-      left: 128,
-      right: 128,
+      top: MediaQuery.of(context).padding.top + widget.top,
+      left: widget.left,
+      right: widget.right,
       child: Material(
         color: Colors.transparent,
         child: SlideTransition(

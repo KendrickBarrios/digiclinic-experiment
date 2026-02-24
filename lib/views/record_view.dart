@@ -1,3 +1,6 @@
+import 'package:digiclinic_experiment/widgets/hover_icon_label_button.dart';
+import 'package:digiclinic_experiment/widgets/patient_badge.dart';
+import 'package:digiclinic_experiment/widgets/record_detail.dart';
 import 'package:flutter/material.dart';
 
 import 'package:digiclinic_experiment/models/clinical_record/clinical_record.dart';
@@ -25,21 +28,13 @@ class RecordView extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const Spacer(),
-              // PatientBadge widget
-              Badge(
-                label: Text(record.fullName),
-                backgroundColor: AppColors.midLightGrayBlue,
-                textStyle: AppTextStyles.iconButtonText,
-                alignment: Alignment.center,
-              ),
+
+              PatientBadge(text: record.fullName),
+
               const SizedBox(width: 25),
-              // PatientBadge widget
-              Badge(
-                label: Text(record.recordCode ?? ''),
-                backgroundColor: AppColors.midLightGrayBlue,
-                textStyle: AppTextStyles.iconButtonText,
-                alignment: Alignment.center,
-              ),
+
+              PatientBadge(text: record.recordCode ?? ''),
+
               const Spacer()
             ],
           ),
@@ -51,25 +46,49 @@ class RecordView extends StatelessWidget {
             children: [
               const SizedBox(width: 50),
 
-              Column(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // Record details widgets
-                  // SURROUND WITH EXPANDED
-                ],
+              Expanded(
+                child: ConstrainedBox(
+                  constraints: BoxConstraints(minWidth: 720, maxWidth: 840, maxHeight: 600),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      RecordDetail(tag: 'Médico:', text: 'Dra. Gillian Vargas'),
+                      RecordDetail(tag: 'Creado el:', date: record.createdAt),
+                      RecordDetail(tag: 'Actualizado el:', date: record.lastUpdated),
+                      RecordDetail(tag: 'Última visita:', date: record.lastVisitDate),
+                      record.nextAppointments.isEmpty
+                        ? RecordDetail(tag: 'Próxima cita:', text: '-')
+                        : RecordDetail(tag: 'Próxima cita:', date: record.nextAppointments[0])
+                    ],
+                  ),
+                ),
               ),
               
               const SizedBox(width: 20),
 
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text('Expedientes recientes', style: AppTextStyles.subTitleBold)
-                  // Scrollable with RecordDocument widget
-                ],
+              Expanded(
+                child: ConstrainedBox(
+                  constraints: BoxConstraints(minWidth: 720, maxWidth: 840, maxHeight: 600),
+                  child: Container(
+                    alignment: Alignment.topCenter,
+                    decoration: BoxDecoration(
+                      border: Border.all(color: AppColors.midLightGrayBlue, width: 2),
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text('Expedientes recientes', style: AppTextStyles.subTitleBold)
+                        // Scrollable with RecordDocument widget
+                      ],
+                    ),
+                  ),
+                ),
               ),
+
+              const SizedBox(width: 50),
             ],
           ),
 
@@ -78,15 +97,43 @@ class RecordView extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
+              const SizedBox(width: 75),
               // Return button
+              SizedBox(
+                width: 200,
+                height: 100,
+                child: HoverIconlabelbutton(
+                  icon: Icons.chevron_left,
+                  iconSize: 60,
+                  label: 'Regresar',
+                  onTap: () => (),
+                  variant: HoverButtonVariant.cancel
+                )
+              ),
+
               const Spacer(),
+
               // Appointments button
+              SizedBox(
+                width: 200,
+                height: 100,
+                child: HoverIconlabelbutton(
+                  icon: Icons.chevron_left,
+                  iconSize: 60,
+                  label: 'Regresar',
+                  onTap: () => (),
+                  variant: HoverButtonVariant.cancel
+                )
+              ),
+
               const SizedBox(width: 25),
               // Add button
               const SizedBox(width: 25),
               // Edit button
               const SizedBox(width: 25),
               // Delete button
+
+              const SizedBox(width: 75),
             ],
           )
         ],
