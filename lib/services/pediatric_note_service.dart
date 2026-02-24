@@ -10,7 +10,7 @@ class PediatricNoteService {
 
   final ApiClient _apiClient;
   final _baseRoute = '/pediatric-notes';
-  final _resource = 'historia clínica pediátrica';
+  // final _resource = 'historia clínica pediátrica';
   final _resources = 'historias clínicas pediátricas';
 
   Future<List<PediatricNote>> getActiveByRecordId(

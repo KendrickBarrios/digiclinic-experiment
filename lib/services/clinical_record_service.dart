@@ -10,7 +10,7 @@ class ClinicalRecordService {
 
   final ApiClient _apiClient;
   final _baseRoute = '/records';
-  final _resource = 'expediente clínico';
+  // final _resource = 'expediente clínico';
   final _resources = 'expedientes clínicos';
 
   Future<List<ClinicalRecord>> getActiveByLastUpdated({

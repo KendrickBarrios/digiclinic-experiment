@@ -10,7 +10,7 @@ class ClinicalNoteService {
 
   final ApiClient _apiClient;
   final _baseRoute = 'clinical-notes';
-  final _resource = 'historia clínica';
+  // final _resource = 'historia clínica';
   final _resources = 'historias clínicas';
 
   Future<List<ClinicalNote>> getActiveByRecordId(

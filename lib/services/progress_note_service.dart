@@ -10,7 +10,7 @@ class ProgressNoteService {
 
   final ApiClient _apiClient;
   final _baseRoute = '/progress-notes';
-  final _resource = 'hoja de evolución';
+  // final _resource = 'hoja de evolución';
   final _resources = 'hojas de evolución';
 
   Future<List<ProgressNote>> getActiveByRecordId(
