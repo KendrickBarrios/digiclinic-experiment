@@ -10,7 +10,7 @@ class IdentificationFormService {
 
   final ApiClient _apiClient;
   final _baseRoute = '/identification-forms';
-  final _resource = 'hoja de identificación';
+  // final _resource = 'hoja de identificación';
   final _resources = 'hojas de identificación';
 
   Future<List<IdentificationForm>> getActiveByLastUpdated({
