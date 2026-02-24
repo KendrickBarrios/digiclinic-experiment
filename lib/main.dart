@@ -3,14 +3,20 @@ import 'package:provider/provider.dart';
 import 'package:window_manager/window_manager.dart';
 
 import 'package:digiclinic_experiment/services/auth/auth_service.dart';
+import 'package:digiclinic_experiment/services/clinical_note_service.dart';
 import 'package:digiclinic_experiment/services/clinical_record_service.dart';
 import 'package:digiclinic_experiment/services/core/credential_storage.dart';
 import 'package:digiclinic_experiment/services/core/api_client.dart';
 import 'package:digiclinic_experiment/services/core/token_storage.dart';
 import 'package:digiclinic_experiment/services/preferences_storage.dart';
+import 'package:digiclinic_experiment/services/identification_form_service.dart';
+import 'package:digiclinic_experiment/services/pediatric_note_service.dart';
+import 'package:digiclinic_experiment/services/progress_note_service.dart';
+import 'package:digiclinic_experiment/services/user_service.dart';
 import 'package:digiclinic_experiment/theme/app_theme.dart';
 import 'package:digiclinic_experiment/viewmodels/auth/auth_view_model.dart';
 import 'package:digiclinic_experiment/viewmodels/home_view_model.dart';
+import 'package:digiclinic_experiment/viewmodels/record_view_model.dart';
 import 'package:digiclinic_experiment/views/auth_gate.dart';
 
 void main() async {
@@ -51,13 +57,42 @@ void main() async {
           create: (context) =>
             ClinicalRecordService(context.read<ApiClient>()),
         ),
+        Provider<IdentificationFormService>(
+          create: (context) =>
+            IdentificationFormService(context.read<ApiClient>()),
+        ),
+        Provider<ClinicalNoteService>(
+          create: (context) =>
+            ClinicalNoteService(context.read<ApiClient>()),
+        ),
+        Provider<PediatricNoteService>(
+          create: (context) =>
+            PediatricNoteService(context.read<ApiClient>()),
+        ),
+        Provider<ProgressNoteService>(
+          create: (context) =>
+            ProgressNoteService(context.read<ApiClient>()),
+        ),
+        Provider<UserService>(
+          create: (context) =>
+            UserService(context.read<ApiClient>()),
+        ),
         ChangeNotifierProvider(
           create: (context) =>
             HomeViewModel(context.read<ClinicalRecordService>()),
         ),
         ChangeNotifierProvider<AuthViewModel>(
           create: (_) => authViewModel
-        )
+        ),
+        ChangeNotifierProvider<RecordViewModel>(
+          create: (context) => RecordViewModel(
+            identificationFormService: context.read<IdentificationFormService>(),
+            clinicalNoteService: context.read<ClinicalNoteService>(),
+            pediatricNoteService: context.read<PediatricNoteService>(),
+            progressNoteService: context.read<ProgressNoteService>(),
+            userService: context.read<UserService>(),
+          ),
+        ),
       ],
       child: const DigiClinicApp(),
     )
