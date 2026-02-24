@@ -112,7 +112,20 @@ class RecordView extends StatelessWidget {
               ),
 
               const Spacer(),
+
               // Appointments button
+              SizedBox(
+                width: 200,
+                height: 100,
+                child: HoverIconlabelbutton(
+                  icon: Icons.chevron_left,
+                  iconSize: 60,
+                  label: 'Regresar',
+                  onTap: () => (),
+                  variant: HoverButtonVariant.cancel
+                )
+              ),
+
               const SizedBox(width: 25),
               // Add button
               const SizedBox(width: 25),
