@@ -2,10 +2,11 @@ import 'package:json_annotation/json_annotation.dart';
 
 import 'gender.dart';
 import 'package:digiclinic_experiment/models/model_utils.dart';
+import 'package:digiclinic_experiment/models/record_document.dart';
 part 'identification_form.g.dart';
 
 @JsonSerializable()
-class IdentificationForm {
+class IdentificationForm implements RecordDocument {
 
   IdentificationForm({
     this.formId,
@@ -50,6 +51,7 @@ class IdentificationForm {
   final DateTime visitDate;
   @JsonKey(includeToJson: false)
   final DateTime? createdAt;
+  @override
   @JsonKey(includeToJson: false)
   final DateTime? lastUpdated;
   final bool isActive;
