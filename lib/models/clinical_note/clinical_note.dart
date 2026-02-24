@@ -1,6 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 
 import 'package:digiclinic_experiment/models/model_utils.dart';
+import 'package:digiclinic_experiment/models/record_document.dart';
 import 'adult_personal_history.dart';
 import 'job_history.dart';
 import 'obstetric_gynecological_history.dart';
@@ -11,7 +12,7 @@ import '../note_asset/systems_review.dart';
 part 'clinical_note.g.dart';
 
 @JsonSerializable()
-class ClinicalNote {
+class ClinicalNote implements RecordDocument {
 
   ClinicalNote({
     this.noteId,
@@ -40,6 +41,7 @@ class ClinicalNote {
   final int formId;
   @JsonKey(includeToJson: false)
   final DateTime? createdAt;
+  @override
   @JsonKey(includeToJson: false)
   final DateTime? lastUpdated;
   final DateTime visitDatetime;

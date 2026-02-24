@@ -1,11 +1,12 @@
 import 'package:json_annotation/json_annotation.dart';
 
+import 'package:digiclinic_experiment/models/record_document.dart';
 import 'progress_record.dart';
 
 part 'progress_note.g.dart';
 
 @JsonSerializable()
-class ProgressNote {
+class ProgressNote implements RecordDocument {
 
   ProgressNote({
     this.noteId,
@@ -22,6 +23,7 @@ class ProgressNote {
   final int recordId;
   @JsonKey(includeToJson: false)
   final DateTime? createdAt;
+  @override
   @JsonKey(includeToJson: false)
   final DateTime? lastUpdated;
   final List<ProgressRecord>? progressRecords;
