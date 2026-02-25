@@ -9,9 +9,10 @@ part of 'pediatric_diet.dart';
 PediatricDiet _$PediatricDietFromJson(Map<String, dynamic> json) =>
     PediatricDiet(
       exclusiveBreastfeeding: json['exclusiveBreastfeeding'] as bool,
-      mixedBreastFeeding: json['mixedBreastFeeding'] as bool,
-      exclusiveBreastfeedingDuration:
-          json['exclusiveBreastfeedingDuration'] as String,
+      mixedBreastfeeding: json['mixedBreastfeeding'] as bool,
+      exclusiveBreastfeedingDuration: nullableStringFromJson(
+        json['exclusiveBreastfeedingDuration'],
+      ),
       mixedBreastFeedingDuration: nullableStringFromJson(
         json['mixedBreastFeedingDuration'],
       ),
@@ -21,7 +22,7 @@ PediatricDiet _$PediatricDietFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$PediatricDietToJson(PediatricDiet instance) =>
     <String, dynamic>{
       'exclusiveBreastfeeding': instance.exclusiveBreastfeeding,
-      'mixedBreastFeeding': instance.mixedBreastFeeding,
+      'mixedBreastfeeding': instance.mixedBreastfeeding,
       'exclusiveBreastfeedingDuration': instance.exclusiveBreastfeedingDuration,
       'mixedBreastFeedingDuration': instance.mixedBreastFeedingDuration,
       'weaning': instance.weaning,

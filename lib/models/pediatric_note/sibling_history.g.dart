@@ -11,8 +11,8 @@ SiblingHistory _$SiblingHistoryFromJson(Map<String, dynamic> json) =>
       hasSiblings: json['hasSiblings'] as bool,
       livingSiblings: (json['livingSiblings'] as num).toInt(),
       deceasedSiblings: (json['deceasedSiblings'] as num).toInt(),
-      deceaseAge: json['deceaseAge'] as String?,
-      deceaseCause: json['deceaseCause'] as String?,
+      deceaseAge: nullableStringFromJson(json['deceaseAge']),
+      deceaseCause: nullableStringFromJson(json['deceaseCause']),
     );
 
 Map<String, dynamic> _$SiblingHistoryToJson(SiblingHistory instance) =>

@@ -15,7 +15,7 @@ class PhysicalExam {
     required this.weight,
     required this.bmi,
     required this.bsa,
-    required this.abdominalPerimeter,
+    this.abdominalPerimeter,
     required this.generalAspect,
     required this.skinAndMucosae,
     required this.skull,
@@ -45,7 +45,7 @@ class PhysicalExam {
   final double weight;
   final double bmi;
   final double bsa;
-  final double abdominalPerimeter;
+  final double? abdominalPerimeter;
   final String generalAspect;
   final String skinAndMucosae;
   final String skull;

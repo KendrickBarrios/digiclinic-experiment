@@ -23,7 +23,7 @@ class IdentificationForm implements RecordDocument {
     this.secondSurname,
     required this.nationalIdNumber,
     required this.ethnicity,
-    required this.birthDate,
+    required this.birthdate,
     required this.age,
     required this.gender,
     required this.maritalStatus,
@@ -63,7 +63,7 @@ class IdentificationForm implements RecordDocument {
   final String? secondSurname;
   final String nationalIdNumber;
   final String ethnicity;
-  final DateTime birthDate;
+  final DateTime birthdate;
   final int age;
   final Gender gender;
   final String maritalStatus;
@@ -92,6 +92,8 @@ class IdentificationForm implements RecordDocument {
     toJson: stringListToJson
   )
   final List<String>? addressList;
+  @override
+  String get displayName => 'Hoja de identificación';
 
   factory IdentificationForm.fromJson(Map<String, dynamic> json) =>
     _$IdentificationFormFromJson(json);

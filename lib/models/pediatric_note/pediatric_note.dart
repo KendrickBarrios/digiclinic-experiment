@@ -20,7 +20,7 @@ class PediatricNote implements RecordDocument {
     required this.formId,
     this.createdAt,
     this.lastUpdated,
-    required this.visitDateTime,
+    required this.visitDatetime,
     required this.infoSource,
     required this.sourceRelationship,
     required this.trustLevel,
@@ -29,7 +29,7 @@ class PediatricNote implements RecordDocument {
     required this.systemsReview,
     required this.nonPathologicalFamilyHistory,
     this.pathologicalFamilyHistory,
-    required this.pediatricPersonalHistory,
+    required this.personalHistory,
     required this.physicalExam,
     this.observations,
     this.problemsList,
@@ -45,7 +45,7 @@ class PediatricNote implements RecordDocument {
   @override
   @JsonKey(includeToJson: false)
   final DateTime? lastUpdated;
-  final DateTime visitDateTime;
+  final DateTime visitDatetime;
   final String infoSource;
   final String sourceRelationship;
   final String trustLevel;
@@ -54,7 +54,7 @@ class PediatricNote implements RecordDocument {
   final SystemsReview systemsReview;
   final NonPathologicalFamilyHistory nonPathologicalFamilyHistory;
   final PathologicalFamilyHistory? pathologicalFamilyHistory;
-  final PediatricPersonalHistory pediatricPersonalHistory;
+  final PediatricPersonalHistory personalHistory;
   final PhysicalExam physicalExam;
   @JsonKey(fromJson: nullableStringFromJson)
   final String? observations;
@@ -64,6 +64,8 @@ class PediatricNote implements RecordDocument {
   )
   final List<String>? problemsList;
   final bool isActive;
+  @override
+  String get displayName => 'Historia clínica pediátrica';
 
   factory PediatricNote.fromJson(Map<String, dynamic> json) =>
     _$PediatricNoteFromJson(json);

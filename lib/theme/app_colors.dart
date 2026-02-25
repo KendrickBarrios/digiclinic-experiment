@@ -25,4 +25,14 @@ class AppColors {
   static const Color midDarkGrayBlue = Color(0xFF38678F);
   static const Color darkerGrayBlue = Color(0xFF294D6B);
   static const Color darkestGrayBlue = Color(0xFF1b3246);
+
+  // tertiary scale (green)
+  static const Color lightestGreen = Color(0xFF78C6A3);
+  static const Color green = Color(0xFF469D89);
+  static const Color darkestGreen = Color(0xFF14746F);
+
+  // alert scale (red)
+  static const Color lightestRed = Color(0xFFE5383B);
+  static const Color red = Color(0xFFA4161A);
+  static const Color darkestRed = Color(0xFF660708);
 }

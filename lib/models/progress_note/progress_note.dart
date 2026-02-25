@@ -28,6 +28,8 @@ class ProgressNote implements RecordDocument {
   final DateTime? lastUpdated;
   final List<ProgressRecord>? progressRecords;
   final bool isActive;
+  @override
+  String get displayName => 'Nota de evolución';
 
   factory ProgressNote.fromJson(Map<String, dynamic> json) =>
     _$ProgressNoteFromJson(json);

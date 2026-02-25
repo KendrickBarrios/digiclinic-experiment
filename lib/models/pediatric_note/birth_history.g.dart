@@ -7,7 +7,7 @@ part of 'birth_history.dart';
 // **************************************************************************
 
 BirthHistory _$BirthHistoryFromJson(Map<String, dynamic> json) => BirthHistory(
-  birthDatetime: json['birthDatetime'] as String,
+  birthDatetime: nullableStringFromJson(json['birthDatetime']),
   laborDuration: json['laborDuration'] as String,
   gestationalAge: json['gestationalAge'] as String,
   laborResponsible: json['laborResponsible'] as String,

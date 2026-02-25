@@ -18,7 +18,7 @@ PediatricNote _$PediatricNoteFromJson(Map<String, dynamic> json) =>
       lastUpdated: json['lastUpdated'] == null
           ? null
           : DateTime.parse(json['lastUpdated'] as String),
-      visitDateTime: DateTime.parse(json['visitDateTime'] as String),
+      visitDatetime: DateTime.parse(json['visitDatetime'] as String),
       infoSource: json['infoSource'] as String,
       sourceRelationship: json['sourceRelationship'] as String,
       trustLevel: json['trustLevel'] as String,
@@ -35,8 +35,8 @@ PediatricNote _$PediatricNoteFromJson(Map<String, dynamic> json) =>
           : PathologicalFamilyHistory.fromJson(
               json['pathologicalFamilyHistory'] as Map<String, dynamic>,
             ),
-      pediatricPersonalHistory: PediatricPersonalHistory.fromJson(
-        json['pediatricPersonalHistory'] as Map<String, dynamic>,
+      personalHistory: PediatricPersonalHistory.fromJson(
+        json['personalHistory'] as Map<String, dynamic>,
       ),
       physicalExam: PhysicalExam.fromJson(
         json['physicalExam'] as Map<String, dynamic>,
@@ -52,7 +52,7 @@ Map<String, dynamic> _$PediatricNoteToJson(PediatricNote instance) =>
       'userId': instance.userId,
       'recordId': instance.recordId,
       'formId': instance.formId,
-      'visitDateTime': instance.visitDateTime.toIso8601String(),
+      'visitDatetime': instance.visitDatetime.toIso8601String(),
       'infoSource': instance.infoSource,
       'sourceRelationship': instance.sourceRelationship,
       'trustLevel': instance.trustLevel,
@@ -61,7 +61,7 @@ Map<String, dynamic> _$PediatricNoteToJson(PediatricNote instance) =>
       'systemsReview': instance.systemsReview,
       'nonPathologicalFamilyHistory': instance.nonPathologicalFamilyHistory,
       'pathologicalFamilyHistory': instance.pathologicalFamilyHistory,
-      'pediatricPersonalHistory': instance.pediatricPersonalHistory,
+      'personalHistory': instance.personalHistory,
       'physicalExam': instance.physicalExam,
       'observations': instance.observations,
       'problemsList': stringListToJson(instance.problemsList),

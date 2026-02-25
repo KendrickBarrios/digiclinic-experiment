@@ -13,7 +13,7 @@ SystemsReview _$SystemsReviewFromJson(Map<String, dynamic> json) =>
       cardiovascularSystem: json['cardiovascularSystem'] as String,
       respiratorySystem: json['respiratorySystem'] as String,
       gastrointestinalSystem: json['gastrointestinalSystem'] as String,
-      urogenitalSystem: json['urogenitalSystem'] as String,
+      urogenitalSystem: nullableStringFromJson(json['urogenitalSystem']),
       neurologicalSystem: json['neurologicalSystem'] as String,
       musculoskeletalSystem: json['musculoskeletalSystem'] as String,
     );

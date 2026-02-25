@@ -46,12 +46,18 @@ class RecordViewModel extends ChangeNotifier {
     notifyListeners();
 
     try {
+      final identificationFuture = identificationFormService.getActiveByRecordId(recordId, size: 2);
+      final clinicalFuture = clinicalNoteService.getActiveByRecordId(recordId, size: 2);
+      final pediatricFuture = pediatricNoteService.getActiveByRecordId(recordId, size: 2);
+      final progressFuture = progressNoteService.getActiveByRecordId(recordId, size: 2);
+      final userFuture = userService.getById(userId);
+
       final results = await Future.wait([
-        identificationFormService.getActiveByRecordId(recordId, size: 2),
-        clinicalNoteService.getActiveByRecordId(recordId, size: 2),
-        pediatricNoteService.getActiveByRecordId(recordId, size: 2),
-        progressNoteService.getActiveByRecordId(recordId, size: 2),
-        userService.getById(userId)
+        identificationFuture,
+        clinicalFuture,
+        pediatricFuture,
+        progressFuture,
+        userFuture
       ]);
 
       final identificationForms = results[0] as List<IdentificationForm>;
@@ -67,13 +73,23 @@ class RecordViewModel extends ChangeNotifier {
         ...progressNotes
       ];
 
-      combined.sort(
-        (a, b) => b.lastUpdated!.compareTo(a.lastUpdated!)
-      );
+      combined.sort((a, b) {
+        final aDate = a.lastUpdated;
+        final bDate = b.lastUpdated;
+
+        if (aDate == null && bDate == null) return 0;
+        if (aDate == null) return 1;
+        if (bDate == null) return -1;
+
+        return bDate.compareTo(aDate);
+      });
 
       _documents = combined;
       _user = fetchedUser;
-    } catch (e) {
+    } catch (e, stack) {
+      _error = e.toString();
+      debugPrint('ERROR EN LOAD: $e');
+      debugPrintStack(stackTrace: stack);
       _error = e.toString();
     }
 

@@ -18,35 +18,35 @@ PediatricPersonalHistory _$PediatricPersonalHistoryFromJson(
   postnatalHistory: PostnatalHistory.fromJson(
     json['postnatalHistory'] as Map<String, dynamic>,
   ),
-  pediatricDiet: PediatricDiet.fromJson(
-    json['pediatricDiet'] as Map<String, dynamic>,
-  ),
+  diet: PediatricDiet.fromJson(json['diet'] as Map<String, dynamic>),
   vaccinesHistory: (json['vaccinesHistory'] as List<dynamic>?)
       ?.map((e) => VaccineRecord.fromJson(e as Map<String, dynamic>))
       .toList(),
   psychomotorDevelopment: PsychomotorDevelopment.fromJson(
     json['psychomotorDevelopment'] as Map<String, dynamic>,
   ),
-  socioeconomicContext: SocioeconomicContext.fromJson(
-    json['socioeconomicContext'] as Map<String, dynamic>,
-  ),
-  communicableDiseases: (json['communicableDiseases'] as List<dynamic>?)
-      ?.map(
+  socioeconomicContext: json['socioeconomicContext'] == null
+      ? null
+      : SocioeconomicContext.fromJson(
+          json['socioeconomicContext'] as Map<String, dynamic>,
+        ),
+  communicableDiseases: (json['communicableDiseases'] as List<dynamic>)
+      .map(
         (e) => PersonalPathologicalRecord.fromJson(e as Map<String, dynamic>),
       )
       .toList(),
-  previousSurgeries: (json['previousSurgeries'] as List<dynamic>?)
-      ?.map(
+  previousSurgeries: (json['previousSurgeries'] as List<dynamic>)
+      .map(
         (e) => PersonalPathologicalRecord.fromJson(e as Map<String, dynamic>),
       )
       .toList(),
-  chronicDiseases: (json['chronicDiseases'] as List<dynamic>?)
-      ?.map(
+  chronicDiseases: (json['chronicDiseases'] as List<dynamic>)
+      .map(
         (e) => PersonalPathologicalRecord.fromJson(e as Map<String, dynamic>),
       )
       .toList(),
-  hospitalizations: (json['hospitalizations'] as List<dynamic>?)
-      ?.map(
+  hospitalizations: (json['hospitalizations'] as List<dynamic>)
+      .map(
         (e) => PersonalPathologicalRecord.fromJson(e as Map<String, dynamic>),
       )
       .toList(),
@@ -59,7 +59,7 @@ Map<String, dynamic> _$PediatricPersonalHistoryToJson(
   'prenatalHistory': instance.prenatalHistory,
   'birthHistory': instance.birthHistory,
   'postnatalHistory': instance.postnatalHistory,
-  'pediatricDiet': instance.pediatricDiet,
+  'diet': instance.diet,
   'vaccinesHistory': instance.vaccinesHistory,
   'psychomotorDevelopment': instance.psychomotorDevelopment,
   'socioeconomicContext': instance.socioeconomicContext,
