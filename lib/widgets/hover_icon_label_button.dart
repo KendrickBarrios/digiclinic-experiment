@@ -28,16 +28,16 @@ ReactiveColors _colorsForVariant(
       );
     case HoverButtonVariant.secondary:
       return ReactiveColors(
-        background: AppColors.lightestGreen,
-        hoverBackground: AppColors.green,
-        pressedBackground: AppColors.darkestGreen,
+        background: AppColors.grayBlue,
+        hoverBackground: AppColors.midDarkGrayBlue,
+        pressedBackground: AppColors.darkerGrayBlue,
         foreGround: scheme.onPrimary
       );
     case HoverButtonVariant.tertiary:
       return ReactiveColors(
-        background: AppColors.grayBlue,
-        hoverBackground: AppColors.midDarkGrayBlue,
-        pressedBackground: AppColors.darkerGrayBlue,
+        background: AppColors.lightestGreen,
+        hoverBackground: AppColors.green,
+        pressedBackground: AppColors.darkestGreen,
         foreGround: scheme.onPrimary
       );
     case HoverButtonVariant.alert:
