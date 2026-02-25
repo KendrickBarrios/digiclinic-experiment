@@ -14,7 +14,7 @@ PhysicalExam _$PhysicalExamFromJson(Map<String, dynamic> json) => PhysicalExam(
   weight: (json['weight'] as num).toDouble(),
   bmi: (json['bmi'] as num).toDouble(),
   bsa: (json['bsa'] as num).toDouble(),
-  abdominalPerimeter: (json['abdominalPerimeter'] as num).toDouble(),
+  abdominalPerimeter: (json['abdominalPerimeter'] as num?)?.toDouble(),
   generalAspect: json['generalAspect'] as String,
   skinAndMucosae: json['skinAndMucosae'] as String,
   skull: json['skull'] as String,

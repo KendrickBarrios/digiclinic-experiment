@@ -57,6 +57,8 @@ class ClinicalNote implements RecordDocument {
   final String? observations;
   final List<String> problemsList;
   final bool isActive;
+  @override
+  String get displayName => 'Historia clínica';
 
   factory ClinicalNote.fromJson(Map<String, dynamic> json) =>
     _$ClinicalNoteFromJson(json);

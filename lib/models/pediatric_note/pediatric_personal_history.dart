@@ -18,28 +18,28 @@ class PediatricPersonalHistory {
     required this.prenatalHistory,
     required this.birthHistory,
     required this.postnatalHistory,
-    required this.pediatricDiet,
+    required this.diet,
     this.vaccinesHistory,
     required this.psychomotorDevelopment,
-    required this.socioeconomicContext,
-    this.communicableDiseases,
-    this.previousSurgeries,
-    this.chronicDiseases,
-    this.hospitalizations,
+    this.socioeconomicContext,
+    required this.communicableDiseases,
+    required this.previousSurgeries,
+    required this.chronicDiseases,
+    required this.hospitalizations,
     this.others
   });
 
   final PrenatalHistory prenatalHistory;
   final BirthHistory birthHistory;
   final PostnatalHistory postnatalHistory;
-  final PediatricDiet pediatricDiet;
+  final PediatricDiet diet;
   final List<VaccineRecord>? vaccinesHistory;
   final PsychomotorDevelopment psychomotorDevelopment;
-  final SocioeconomicContext socioeconomicContext;
-  final List<PersonalPathologicalRecord>? communicableDiseases;
-  final List<PersonalPathologicalRecord>? previousSurgeries;
-  final List<PersonalPathologicalRecord>? chronicDiseases;
-  final List<PersonalPathologicalRecord>? hospitalizations;
+  final SocioeconomicContext? socioeconomicContext;
+  final List<PersonalPathologicalRecord> communicableDiseases;
+  final List<PersonalPathologicalRecord> previousSurgeries;
+  final List<PersonalPathologicalRecord> chronicDiseases;
+  final List<PersonalPathologicalRecord> hospitalizations;
   @JsonKey(fromJson: nullableStringFromJson)
   final String? others;
 

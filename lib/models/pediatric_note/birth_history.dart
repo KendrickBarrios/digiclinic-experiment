@@ -1,3 +1,4 @@
+import 'package:digiclinic_experiment/models/model_utils.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'birth_history.g.dart';
@@ -6,7 +7,7 @@ part 'birth_history.g.dart';
 class BirthHistory {
 
   BirthHistory({
-    required this.birthDatetime,
+    this.birthDatetime,
     required this.laborDuration,
     required this.gestationalAge,
     required this.laborResponsible,
@@ -15,7 +16,8 @@ class BirthHistory {
     required this.laborComplications
   });
 
-  final String birthDatetime;
+  @JsonKey(fromJson: nullableStringFromJson)
+  final String? birthDatetime;
   final String laborDuration;
   final String gestationalAge;
   final String laborResponsible;

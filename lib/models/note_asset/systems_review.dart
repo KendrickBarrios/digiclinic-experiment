@@ -1,3 +1,4 @@
+import 'package:digiclinic_experiment/models/model_utils.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'systems_review.g.dart';
@@ -11,7 +12,7 @@ class SystemsReview {
     required this.cardiovascularSystem,
     required this.respiratorySystem,
     required this.gastrointestinalSystem,
-    required this.urogenitalSystem,
+    this.urogenitalSystem,
     required this.neurologicalSystem,
     required this.musculoskeletalSystem
   });
@@ -21,7 +22,8 @@ class SystemsReview {
   final String cardiovascularSystem;
   final String respiratorySystem;
   final String gastrointestinalSystem;
-  final String urogenitalSystem;
+  @JsonKey(fromJson: nullableStringFromJson)
+  final String? urogenitalSystem;
   final String neurologicalSystem;
   final String musculoskeletalSystem;
 

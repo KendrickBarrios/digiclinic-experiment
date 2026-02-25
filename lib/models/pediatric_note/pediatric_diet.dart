@@ -9,15 +9,16 @@ class PediatricDiet {
 
   PediatricDiet({
     required this.exclusiveBreastfeeding,
-    required this.mixedBreastFeeding,
-    required this.exclusiveBreastfeedingDuration,
+    required this.mixedBreastfeeding,
+    this.exclusiveBreastfeedingDuration,
     this.mixedBreastFeedingDuration,
     this.weaning
   });
 
   final bool exclusiveBreastfeeding;
-  final bool mixedBreastFeeding;
-  final String exclusiveBreastfeedingDuration;
+  final bool mixedBreastfeeding;
+  @JsonKey(fromJson: nullableStringFromJson)
+  final String? exclusiveBreastfeedingDuration;
   @JsonKey(fromJson: nullableStringFromJson)
   final String? mixedBreastFeedingDuration;
   @JsonKey(fromJson: nullableStringFromJson)
