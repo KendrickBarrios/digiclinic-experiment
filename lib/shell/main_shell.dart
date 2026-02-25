@@ -1,3 +1,4 @@
+import 'package:digiclinic_experiment/views/document_view.dart';
 import 'package:digiclinic_experiment/views/record_view.dart';
 import 'package:flutter/material.dart';
 
@@ -52,7 +53,13 @@ class _MainShellState extends State<MainShell> {
       case AppRoute.settings:
         return const SettingsView();
       case AppRoute.recordView:
-        return RecordView(record: _selectedRecord!);
+        return RecordView(
+          record: _selectedRecord!,
+          onReturnPressed: () => navigateTo(AppRoute.home),
+          onDocumentPressed: () => navigateTo(AppRoute.documentView),
+        );
+      case AppRoute.documentView:
+        return const DocumentView();
     }
   }
 
