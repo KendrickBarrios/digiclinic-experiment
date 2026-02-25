@@ -9,7 +9,7 @@ class ClinicalNoteService {
   ClinicalNoteService(this._apiClient);
 
   final ApiClient _apiClient;
-  final _baseRoute = 'clinical-notes';
+  final _baseRoute = '/clinical-notes';
   // final _resource = 'historia clínica';
   final _resources = 'historias clínicas';
 
