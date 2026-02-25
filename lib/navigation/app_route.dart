@@ -1,8 +1,9 @@
 enum AppRoute {
   home,
-  recordView,
   search,
   newRecord,
+  recordView,
+  documentView,
   appointments,
   account,
   settings
