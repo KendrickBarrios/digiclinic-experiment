@@ -43,6 +43,7 @@ class RecordDetail extends StatelessWidget {
           child: Text(
             text ?? dateFormatter.format(date!),
             style: AppTextStyles.recordDetailValue,
+            maxLines: 1,
             overflow: TextOverflow.ellipsis,
           ),
         )
