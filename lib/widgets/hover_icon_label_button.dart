@@ -7,6 +7,8 @@ import 'package:digiclinic_experiment/widgets/utils/reactive_colors.dart';
 enum HoverButtonVariant {
   primary,
   secondary,
+  tertiary,
+  alert,
   cancel
 }
 
@@ -25,6 +27,26 @@ ReactiveColors _colorsForVariant(
         foreGround: scheme.onPrimary
       );
     case HoverButtonVariant.secondary:
+      return ReactiveColors(
+        background: AppColors.lightestGreen,
+        hoverBackground: AppColors.green,
+        pressedBackground: AppColors.darkestGreen,
+        foreGround: scheme.onPrimary
+      );
+    case HoverButtonVariant.tertiary:
+      return ReactiveColors(
+        background: AppColors.grayBlue,
+        hoverBackground: AppColors.midDarkGrayBlue,
+        pressedBackground: AppColors.darkerGrayBlue,
+        foreGround: scheme.onPrimary
+      );
+    case HoverButtonVariant.alert:
+      return ReactiveColors(
+        background: AppColors.lightestRed,
+        hoverBackground: AppColors.red,
+        pressedBackground: AppColors.darkestRed,
+        foreGround: scheme.onPrimary
+      );
     case HoverButtonVariant.cancel:
       return ReactiveColors(
         background: AppColors.buttonLightGray,
