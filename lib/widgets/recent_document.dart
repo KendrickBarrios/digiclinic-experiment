@@ -1,6 +1,3 @@
-import 'package:digiclinic_experiment/models/clinical_note/clinical_note.dart';
-import 'package:digiclinic_experiment/models/identification_form/identification_form.dart';
-import 'package:digiclinic_experiment/models/pediatric_note/pediatric_note.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
